@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" xml:lang="en" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>NeHe Productions: Adding Colour</title>
+
+    <link rel="stylesheet" type="text/css" href="03%20NeHe%20Productions%20%20Adding%20Colour_files/public_base.css">
+    <link type="text/css" rel="stylesheet" href="03%20NeHe%20Productions%20%20Adding%20Colour_files/shThemeMidnight.css">
+    
+    <link rel="alternate" type="application/atom+xml" title="Atom feed" href="http://nehe.gamedev.net/atom/">
+    <link rel="alternate" type="application/rss+xml" title="RSS feed" href="http://nehe.gamedev.net/rss/">
+    
+    <meta name="author" content="Luke Benstead + Carsten Haubold">
+    <meta name="description" content="OpenGL Tutorials, Demos, Games and More...">
+    <meta name="keywords" content="opengl, tutorial, article, demo, game, blend, texturemap, lighting, contest, 3D">
+
+    
+    
+
+    
+
+
+
+
+    
+    
+    
+    
+        
+        <script type="text/javascript" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/google_service.js"></script>
+        <script type="text/javascript">
+        GS_googleAddAdSenseService("ca-pub-3167291168602081");    
+        GS_googleEnableAllServices();
+        </script><script src="03%20NeHe%20Productions%20%20Adding%20Colour_files/google_ads.js"></script>
+
+        <script type="text/javascript">
+        GA_googleAddSlot("ca-pub-3167291168602081", "Leaderboard_NeHe");
+        GA_googleAddSlot("ca-pub-3167291168602081", "Skyscraper_NeHe");
+        </script>
+        <script type="text/javascript">
+        GA_googleFetchAds();
+        </script>
+    
+    
+
+    
+  </head>
+
+  <body>
+    <table id="layout_table" border="0" cellpadding="0" cellspacing="0">
+    <tbody><tr><td>
+        <div id="header">
+                <a href="http://nehe.gamedev.net/"><img class="logo" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/nehe.png" alt="Nehe" border="0"></a>
+        </div>            
+    </td></tr>
+    <tr><td colspan="2">
+            
+<div class="navbar">
+    <a href="http://nehe.gamedev.net/">HOME</a>
+</div>
+    
+    </td></tr>
+    <tr>
+        <td class="col1">
+
+            
+<div id="article_container">
+<h1>Adding Colour</h1>
+<p>In the last tutorial I taught you how to display Triangles and Quads 
+on the screen. In this tutorial I will teach you how to add 2 different 
+types of coloring to the triangle and quad. Flat coloring will make the 
+quad one solid color. Smooth coloring will blend the 3 colors specified 
+at each point (vertex) of the triangle together, creating a nice blend 
+of colors.</p>
+<p>Using the code from the last tutorial, we will be adding to the 
+DrawGLScene procedure. I will rewrite the entire procedure below, so if 
+you plan to modify the last lesson, you can replace the DrawGLScene 
+procedure with the code below, or just add code to the DrawGLScene 
+procedure that is not already in the last tutorial.</p>
+<div><div id="highlighter_167284" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp color1 bold">int</code> <code class="cpp plain">DrawGLScene(GLvoid)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="cpp comments">// Here's Where We Do All The Drawing</code></div><div class="line number2 index1 alt1"><code class="cpp plain">{</code></div><div class="line number3 index2 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); </code><code class="cpp comments">// Clear The Screen And The Depth Buffer</code></div><div class="line number4 index3 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glLoadIdentity();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Reset The Current Modelview Matrix</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glTranslatef(-1.5f,0.0f,-6.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Left 1.5 Then Into Screen Six Units</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glBegin(GL_TRIANGLES);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Begin Drawing Triangles</code></div></div></td></tr></tbody></table></div></div>
+<p>If you remember from the last tutorial, this is the section of code 
+to draw the triangle on the left half of the screen. The next line of 
+code will be the first time we use the command glColor3f(r,g,b). The 
+three parameters in the brackets are red, green and blue intensity 
+values. The values can be from 0.0f to 1.0f. It works the same way as 
+the color values we use to clear the background of the screen.</p>
+<p>We are setting the color to red (full red intensity, no green, no 
+blue). The line of code right after that is the first vertex (the top of
+ the triangle), and will be drawn using the current color which is red. 
+Anything we draw from now on will be red until we change the color to 
+something other than red.</p>
+<div><div id="highlighter_347406" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">glColor3f(1.0f,0.0f,0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Set The Color To Red</code></div><div class="line number2 index1 alt1"><code class="cpp plain">glVertex3f( 0.0f, 1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Move Up One Unit From Center (Top Point)</code></div></div></td></tr></tbody></table></div></div>
+<p>We've placed the first vertex on the screen, setting it's color to 
+red. Now before we set the second vertex we'll change the color to 
+green. That way the second vertex which is the left corner of the 
+triangle will be set to green.</p>
+<div><div id="highlighter_651592" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp plain">glColor3f(0.0f,1.0f,0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Set The Color To Green</code></div><div class="line number2 index1 alt1"><code class="cpp plain">glVertex3f(-1.0f,-1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Left And Down One Unit (Bottom Left)</code></div></div></td></tr></tbody></table></div></div>
+<p>Now we're on the third and final vertex. Just before we draw it, we 
+set the color to blue. This will be the right corner of the triangle. As
+ soon as the glEnd() command is issued, the polygon will be filled in. 
+But because it has a different color at each vertex, rather than one 
+solid color throughout, the color will spread out from each corner, 
+eventually meeting in the middle, where the colors will blend together. 
+This is smooth coloring.</p>
+<div><div id="highlighter_371087" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glColor3f(0.0f,0.0f,1.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Set The Color To Blue</code></div><div class="line number2 index1 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glVertex3f( 1.0f,-1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Right And Down One Unit (Bottom Right)</code></div><div class="line number3 index2 alt2"><code class="cpp plain">glEnd();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="cpp comments">// Done Drawing A Triangle</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="cpp plain">glTranslatef(3.0f,0.0f,0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// From Right Point Move 3 Units Right</code></div></div></td></tr></tbody></table></div></div>
+<p>Now we will draw a solid blue colored square. It's important to 
+remember that anything drawn after the color has been set will be drawn 
+in that color. Every project you create down the road will use coloring 
+in one way or another. Even in scenes where everything is texture 
+mapped, glColor3f can still be used to tint the color of textures, etc. 
+More on that later.</p>
+<p>So to draw our square all one color, all we have to do is set the 
+color once to a color we like (blue in this example), then draw the 
+square. The color blue will be used for each vertex because we're not 
+telling OpenGL to change the color at each vertex. The final result... a
+ solid blue square. Again, the square (quad) is drawn in a clockwise 
+order meaning we start off looking at the back of the quad.</p>
+<div><div id="highlighter_109125" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glColor3f(0.5f,0.5f,1.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Set The Color To Blue One Time Only</code></div><div class="line number2 index1 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glBegin(GL_QUADS);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Start Drawing Quads</code></div><div class="line number3 index2 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glVertex3f(-1.0f, 1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Left And Up 1 Unit (Top Left)</code></div><div class="line number4 index3 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glVertex3f( 1.0f, 1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Right And Up 1 Unit (Top Right)</code></div><div class="line number5 index4 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glVertex3f( 1.0f,-1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Right And Down One Unit (Bottom Right)</code></div><div class="line number6 index5 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glVertex3f(-1.0f,-1.0f, 0.0f);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Left And Down One Unit (Bottom Left)</code></div><div class="line number7 index6 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">glEnd();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="cpp comments">// Done Drawing A Quad</code></div><div class="line number8 index7 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">return</code> <code class="cpp plain">TRUE;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ </code><code class="cpp comments">// Keep Going</code></div><div class="line number9 index8 alt2"><code class="cpp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Finally change the code to toggle window / fullscreen mode so that the title at the top of the window is proper.</p>
+<div><div id="highlighter_219973" class="syntaxhighlighter  cpp"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table border="0" cellpadding="0" cellspacing="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="cpp keyword bold">if</code> <code class="cpp plain">(keys[VK_F1])&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Is F1 Being Pressed?</code></div><div class="line number2 index1 alt1"><code class="cpp plain">{</code></div><div class="line number3 index2 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">keys[VK_F1]=FALSE;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// If So Make Key FALSE</code></div><div class="line number4 index3 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">KillGLWindow();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Kill Our Current Window</code></div><div class="line number5 index4 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">fullscreen=!fullscreen;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Toggle Fullscreen / Windowed Mode</code></div><div class="line number6 index5 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp comments">// Recreate Our OpenGL Window ( Modified )</code></div><div class="line number7 index6 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">if</code> <code class="cpp plain">(!CreateGLWindow(</code><code class="cpp string">"NeHe's Color Tutorial"</code><code class="cpp plain">,640,480,16,fullscreen))</code></div><div class="line number8 index7 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">{</code></div><div class="line number9 index8 alt2"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp keyword bold">return</code> <code class="cpp plain">0;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="cpp comments">// Quit If Window Was Not Created</code></div><div class="line number10 index9 alt1"><code class="cpp spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="cpp plain">}</code></div><div class="line number11 index10 alt2"><code class="cpp plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>In this tutorial I have tried to explain in as much detail, how to 
+add flat and smooth coloring to your OpenGL polygons. Play around with 
+the code, try changing the red, green and blue values to different 
+numbers. See what colors you can come up with. If you have comments or 
+questions please email me. If you feel I have incorrectly commented 
+something or that the code could be done better in some sections, please
+ let me know. I want to make the best OpenGL tutorials I can. I'm 
+interested in hearing your feedback.</p>
+<p><strong>Jeff Molofee</strong> (<strong>NeHe</strong>)</p>
+<p>* DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/vc/lesson03.zip">Visual C++</a> Code For This Lesson.</p>
+<p>* DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/asm/lesson03.zip">ASM</a> Code For This Lesson. ( Conversion by Foolman )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/bcb6/lesson03_bcb6.zip">Borland C++ Builder 6</a> Code For This Lesson. ( Conversion by Christian Kindahl )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/beos/lesson03.zip">BeOS</a> Code For This Lesson. ( Conversion by Rene Manqueros )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/c_sharp/lesson03.zip">C#</a> Code For This Lesson. ( Conversion by Joachim Rohde )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/csgl/lesson03.zip">VB.Net CsGL</a> Code For This Lesson. ( Conversion by X )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/cwarrior/lesson03.zip">Code Warrior 5.3</a> Code For This Lesson. ( Conversion by Scott Lupton )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/cygwin/lesson03.tar.gz">Cygwin</a> Code For This Lesson. ( Conversion by Stephan Ferraro )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/d/lesson03.zip">D Language</a> Code For This Lesson. ( Conversion by Familia Pineda Garcia )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/delphi/lesson03.zip">Delphi</a> Code For This Lesson. ( Conversion by Michal Tucek )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/devc/lesson03.zip">Dev C++</a> Code For This Lesson. ( Conversion by Dan )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/euphoria/lesson03.zip">Euphoria</a> Code For This Lesson. ( Conversion by Evan Marshall )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/game/data/lessons/glut/lesson03.zip">Game GLUT</a> Code For This Lesson. ( Conversion by Milikas Anastasios )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/glut/lesson03.zip">GLUT</a> Code For This Lesson. ( Conversion by Andy Restad )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/irix/lesson03.zip">Irix</a> Code For This Lesson. ( Conversion by Lakmal Gunasekara )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/java/lesson03.zip">Java</a> Code For This Lesson. ( Conversion by Jeff Kirby )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/java_swt/lesson03.zip">Java/SWT</a> Code For This Lesson. ( Conversion by Victor Gonzalez )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/jedisdl/lesson03.zip">Jedi-SDL</a> Code For This Lesson. ( Conversion by Dominique Louis )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/jogl/lesson03.jar">JoGL</a> Code For This Lesson. ( Conversion by Kevin J. Duling )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/lccwin32/lccwin32_lesson03.zip">LCC Win32</a> Code For This Lesson. ( Conversion by Robert Wishlaw )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/linux/lesson03.tar.gz">Linux</a> Code For This Lesson. ( Conversion by Richard Campbell )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/linuxglx/lesson03.tar.gz">Linux/GLX</a> Code For This Lesson. ( Conversion by Mihael Vrbanec )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/linuxsdl/lesson03.tar.gz">Linux/SDL</a> Code For This Lesson. ( Conversion by Ti Leggett )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/lwjgl/lesson03.jar">LWJGL</a> Code For This Lesson. ( Conversion by Mark Bernard )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/mac/lesson03.sit">Mac OS</a> Code For This Lesson. ( Conversion by Anthony Parker )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/macosxcocoa/lesson03.zip">Mac OS X/Cocoa</a> Code For This Lesson. ( Conversion by Bryan Blackburn )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/m/data/lessons/asm/lesson03.zip">MASM</a> Code For This Lesson. ( Conversion by Nico (Scalp) )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/pbasic/lesson03.zip">Power Basic</a> Code For This Lesson. ( Conversion by Angus Law )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/pelles_c/lesson03.zip">Pelles C</a> Code For This Lesson. ( Conversion by Pelle Orinius )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/perl/lesson03.zip">Perl</a> Code For This Lesson. ( Conversion by Cora Hussey )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/python/lesson03.tar.gz">Python</a> Code For This Lesson. ( Conversion by John Ferguson )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/realbasic/RBlesson03.zip">REALbasic</a> Code For This Lesson. ( Conversion by Thomas J. Cunningham )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/ruby/lesson03.zip">Ruby</a> Code For This Lesson. ( Conversion by Manolo Padron Martinez )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/scheme/lesson03.zip">Scheme</a> Code For This Lesson. ( Conversion by Jon DuBois )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/solaris/lesson03.zip">Solaris</a> Code For This Lesson. ( Conversion by Lakmal Gunasekara )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/vb/lesson03.zip">Visual Basic</a> Code For This Lesson. ( Conversion by Ross Dawson )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/vfortran/lesson03.zip">Visual Fortran</a> Code For This Lesson. ( Conversion by Jean-Philippe Perois )<br> * DOWNLOAD <a href="http://nehe.gamedev.net/data/lessons/vs_net/lesson03.zip">Visual Studio .NET</a> Code For This Lesson. ( Conversion by Grant James )</p>
+<p>&nbsp;</p>
+<p><strong><span><a href="http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=02">&lt; Lesson 02</a></span></strong><strong><span><a href="http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=04">Lesson 04 &gt;</a></span></strong></p>
+
+
+</div>
+
+
+
+            <div style="width:728px;padding:0px;margin:auto; margin-top: 10px;">
+                <script type="text/javascript">GA_googleFillSlot("Leaderboard_NeHe");</script><script src="03%20NeHe%20Productions%20%20Adding%20Colour_files/ads"></script><div id="google_ads_div_Leaderboard_NeHe_ad_container">
+<ins style="width: 728px; height: 90px; display: inline-table; position: relative; border: 0pt none;"><ins style="width: 728px; height: 90px; display: block; position: relative; border: 0pt none;"><iframe style="border: 0pt none; position: absolute; top: 0pt; left: 0pt;" marginheight="0" marginwidth="0" name="google_ads_iframe_Leaderboard_NeHe" id="google_ads_iframe_Leaderboard_NeHe" frameborder="0" height="90" scrolling="no" width="728"></iframe></ins></ins></div>
+<script>GA_googleCreateDomIframe("google_ads_div_Leaderboard_NeHe_ad_container" ,"Leaderboard_NeHe");</script>
+            </div>              
+        </td>
+        <td class="col2">
+            
+
+
+
+
+<div style="text-align: center; padding:10px;">
+
+
+<script type="text/javascript">
+    GA_googleFillSlot("Skyscraper_NeHe");
+</script><script src="03%20NeHe%20Productions%20%20Adding%20Colour_files/ads_002"></script><div id="google_ads_div_Skyscraper_NeHe_ad_container"><script type="text/javascript"><!--
+  amazon_ad_tag = "gamedev";  amazon_ad_width = "160";  amazon_ad_height = "600";//--></script>
+<script type="text/javascript" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/ads.js"></script><script src="03%20NeHe%20Productions%20%20Adding%20Colour_files/ads-common.js" type="text/javascript"></script><iframe src="03%20NeHe%20Productions%20%20Adding%20Colour_files/cm.htm" marginwidth="0" marginheight="0" border="0" style="border: medium none;" frameborder="0" height="600" scrolling="no" width="160"></iframe>
+
+</div>
+
+
+</div>
+
+        </td>
+    </tr></tbody></table>
+    <div id="footer">
+        <p>
+			© 1997-2011 <a href="http://www.gamedev.net/">Gamedev.net</a>. All rights reserved.<br>
+			NeHe TM and NeHe ProductionsTM are trademarks of GameDev.net, LLC<br>
+			OpenGL® is a registered trademark of Silicon Graphics Inc.<br>
+		</p>        
+    </div>
+
+    
+	    <script type="text/javascript" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/shCore.js"></script>
+        <script type="text/javascript" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/shBrushCpp.js"></script>
+	    <script type="text/javascript" src="03%20NeHe%20Productions%20%20Adding%20Colour_files/shBrushJScript.js"></script>
+	    <script type="text/javascript">SyntaxHighlighter.all();</script>
+    
+    
+<!-- GoogleAnalytics code -->
+<script src="03%20NeHe%20Productions%20%20Adding%20Colour_files/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-279474-2"; // Gamedev
+urchinTracker();
+_uff = 0; // Reset for second account
+_uacct = "UA-24180731-1"; // Non-GD
+urchinTracker();
+</script> 
+  
+
+</body></html>

@@ -1,0 +1,109 @@
+table.search {padding:0; border:none; width:100%;background: #BBC7CE;}
+table.search tr {border:none}
+#search_form p, .search_form p {margin:0; padding:0;}
+
+.search_head
+{
+	background: #5C7099 url(img/gradient_thead.gif) repeat-x top left;
+	color: #FFFFFF;
+	font-weight: bold;
+	font-size: 11px;
+	padding:4px;
+}
+
+.search_bg
+{
+	background: #BBC7CE;
+	color: #000000;
+	font: 11px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+textarea, .bginput
+{
+	font: 10px verdana, geneva, lucida, 'lucida grande', arial, helvetica, sans-serif;
+}
+
+#navigation_menu {margin:3px 0 3px 12px; }
+
+#navigation_menu_after { /*Add margin between menu and rest of content in Firefox*/
+display: block; 
+height: 1px; 
+clear: both; 
+font-size:1px;
+visibility: hidden;
+margin:0px; padding:0;
+}
+
+#navigation_menu ul {
+background: url('img/menu/menu_bg.gif') top left repeat-x; 
+padding-top:0;
+margin:0;
+float: left;
+font-size: 100% ;
+border-bottom:1px solid #67747B;
+}
+
+#navigation_menu ul li {
+display: inline;
+float: left;
+padding: 6px 0px 6px 2px;
+background: url('img/menu/menu_divider.gif') center left no-repeat;
+}
+
+
+#navigation_menu ul li a{
+background: url('img/menu/menu_on_off.gif') top left repeat-x; 
+color: #000;
+padding: 6px 12px 6px 7px;
+
+text-decoration: none;
+
+}
+
+#navigation_menu ul li.left { background: url('img/menu/menu_left.gif') top left no-repeat; margin-left:-40px;
+}
+
+#navigation_menu ul li.right  { background: url('img/menu/menu_right.gif') top right no-repeat;padding: 6px 0px 6px 0px;
+}
+
+
+#navigation_menu ul li a:hover{
+color: #fff; text-decoration:underline;
+background-position: 100% -80px;
+}
+
+/* ######### Style for Drop Down Menu ######### */
+
+.dropmenudiv{
+position:absolute;
+top: 0;
+border: 1px solid #547695;
+/*border-bottom-width: 0;*/
+font-size:.8em;
+font-family: Arial, Lucida, sans-serif;
+line-height:1.3em;
+z-index:100;
+background-color: #D3EBF8;
+visibility: hidden;
+width:160px;
+padding-left: 2px; padding-right:10px;
+}
+
+.dropmenudiv a{
+width: 100%;
+display: block;
+text-indent: 3px;
+ /*border-bottom: 1px solid #547695;*/
+padding: 2px 0;
+text-decoration: none;
+color: black;
+}
+
+.dropmenudiv a:hover{ /*Theme Change here*/
+background-color: #547695;
+color:#fff;
+}
+
+#dropmenu6{border:none}

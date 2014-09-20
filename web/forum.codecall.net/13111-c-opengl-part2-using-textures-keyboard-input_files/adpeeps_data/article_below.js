@@ -1,0 +1,1 @@
+document.write('<iframe src=\"http://ib.adnxs.com/acb?member=752&width=300&height=250&pb=60&cb=5351317&referrer=\"  width=\"300\" height=\"250\" marginwidth=\"0\" marginheight=\"0\" frameborder=\"0\" scrolling=\"no\"></iframe>');

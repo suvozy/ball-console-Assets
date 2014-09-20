@@ -1,0 +1,2024 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html><head>
+	<title>Simple OpenGL Test Framework - CodeProject</title> 
+	<link type="text/css" rel="stylesheet" href="OpenGLTestFrmwk.aspx_files/CodeProject.css">
+
+	
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="Description" content="A simple OpenGL framework for fast prototyping of OpenGL and game applications; Author: Kristian Carazo; Section: OpenGL; Chapter: Multimedia">
+<meta name="Keywords" content="WinXP, Vista, VS2005, VS2008, C++, OpenGL, Dev, Intermediate,OpenGL,Multimedia,Free source code, tutorials">
+<meta name="Author" content="Kristian Carazo">
+<meta name="Rating" content="General">
+<meta name="Robots" content="index, follow">
+<meta name="Revisit-After" content="1 days">
+<meta name="google-site-verification" content="RP2bNCUeOmNkkJesEnU8X3UyTbqIcCKP0CmdwU8in5k">
+<meta name="msapplication-navbutton-color" content="#FF9900">
+<meta name="application-name" content="The Code Project">
+<meta name="msapplication-tooltip" content="Your Development Resource.">
+<meta name="msapplication-starturl" content="http://www.codeproject.com/?pinned=true">
+<meta name="msapplication-task" content="name=Homepage;action-uri=http://www.codeproject.com/;icon-uri=http://www.codeproject.com/favico.ico">
+<meta name="msapplication-task" content="name=Latest Articles;action-uri=http://www.codeproject.com/script/articles/Latest.aspx;icon-uri=http://www.codeproject.com/favico.ico">
+<meta name="msapplication-task" content="name=Questions and Answers;action-uri=http://www.codeproject.com/script/Answers/;icon-uri=http://www.codeproject.com/favico.ico">
+<meta name="msapplication-task" content="name=The Lounge;action-uri=http://www.codeproject.com/Lounge.aspx;icon-uri=http://www.codeproject.com/favico.ico">
+<link rel="dns-prefetch" href="http://ajax.googleapis.com/"> 
+
+<link rel="canonical" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx">
+
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - All topics" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=1">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - MFC / C++" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=2">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - C#" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=3">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - ASP.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=4">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - .NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=5">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Latest articles - VB.NET" href="http://www.codeproject.com/webservices/articlerss.aspx?cat=6">
+<link rel="alternate" type="application/rss+xml" title="CodeProject Lounge Postings" href="http://www.codeproject.com/webservices/LoungeRSS.aspx">
+<link rel="search" type="application/opensearchdescription+xml" title="CodeProject" href="http://www.codeproject.com/info/OpenSearch.xml">
+
+	<!-- base href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx" -->
+	<link rel="icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="shortcut icon" href="http://www.codeproject.com/favicon.ico" type="image/ico">
+<link rel="apple-touch-icon" href="http://www.codeproject.com/images/FavIcon-Apple.png" type="image/png">
+<script type="text/javascript" language="Javascript">//<![CDATA[
+if(top!=self)top.location.href=location.href; if(typeof(DemoUrl)!="undefined")document.write(unescape('%3Cme')+'ta http'+'-equiv="re' +'fresh" con'+'tent="1;url='+DemoUrl+unescape('"%3CE'));
+function SelfCheck(){ return window.confirm("You are about to reply to your own message. Is this really what you want?");}
+var smoothScroll = false;
+var Selected = "-1";
+function Pin(elm){
+ CloseMsg(Selected);
+ Selected=''
+ var wrk=elm.parentNode; if(wrk)wrk=wrk.children[0];
+ var fc=elm?elm.firstChild:null;
+ if (wrk&&!wrk.pinned) {
+  OpenMsg(wrk.name, true);wrk.pinned=true;fc.src='http://s.codeproject.com/script/forums/images/pinned.gif';fc.title='Pinned. Click to unpin'
+ } else {
+  wrk.pinned=false;CloseMsg(wrk.name); fc.src='http://s.codeproject.com/script/forums/images/pin.gif';fc.title='Click to pin message'
+ }
+ return false;
+}
+function CloseMsg(msgId) {
+ if(!msgId||msgId==''||msgId<0)return;
+ var lnk=document.getElementsByName(msgId);
+ if(lnk&&lnk.length>0&&lnk[0].pinned)return;
+ var hed=document.getElementById('F' + msgId.toString() + '_h0');
+ if(hed) hed.className = hed.className.replace("Sel", "UnSel");
+ var bdy=document.getElementById('F' + msgId.toString() + '_h1');
+ if(bdy) bdy.style.display = 'none';
+}
+function OpenMsg(msgId, keep) {
+ if(!msgId||msgId==''||msgId<0)return;
+ var bdy=document.getElementById('F' + msgId.toString() + '_h1');
+ if(bdy){
+  var lnk=document.getElementsByName(msgId);
+  if(lnk&&lnk.length>0&&lnk[0].pinned)keep=true;
+  if(keep&&bdy.style.display!='none')return;
+  if(bdy.style.display=='none') bdy.style.display='';
+  else bdy.style.display = 'none';
+ }
+ var hed=document.getElementById('F' + msgId.toString() + '_h0');
+ if (hed) hed.className = hed.className.replace('UnSel', 'Sel');
+ if(bdy&&hed&&bdy.style.display!='none'){
+  var webkitWeird=document.documentElement.scrollTop < document.body.scrollTop;
+  if (!webkitWeird)document.body.scrollTop = getRealPos(hed, 'Top') - document.body.clientHeight/10;
+  EnsureMessageVisible(msgId, true);
+ }
+}
+function EnsureMessageVisible(msgID, bShowTop) {
+	var webkitWeird = document.documentElement.scrollTop < document.body.scrollTop;
+	var msgHeader = document.getElementById('F' + msgID + '_h0');
+	var msgBody = document.getElementById('F' + msgID + '_h1');
+	if (!msgBody || !msgHeader) return;
+	var scrollContainer = document.documentElement;
+	var top = getRealPos(msgHeader, 'Top');
+	var bottom = getRealPos(msgBody, 'Top') + msgBody.offsetHeight;
+	var scrollTop = webkitWeird? scrollTop = document.body.scrollTop:document.documentElement.scrollTop;
+	if (scrollTop > top && !bShowTop) scrollTop = top - scrollContainer.clientHeight / 10;
+	if (scrollTop + scrollContainer.clientHeight < bottom) scrollTop = bottom - scrollContainer.clientHeight;
+	if (scrollTop > top && bShowTop) scrollTop = top - scrollContainer.clientHeight / 10;
+ if (smoothScroll){
+  if (webkitWeird) $(document.body).stop().animate({'scrollTop' : scrollTop}, 'fast');
+  else $(scrollContainer).stop().animate({'scrollTop' : scrollTop}, 'fast');
+ } else {
+  if (webkitWeird) document.body.scrollTop = scrollTop;
+  else scrollContainer.scrollTop = scrollTop;
+ }
+}
+function getRealPos(i,which) {
+	iPos = 0;
+	while (i!=null)  {
+		iPos += i['offset' + which];
+		i = i.offsetParent;
+	}
+	return iPos;
+}
+var switchCallback;
+function SwitchMessage(e, msgId) {
+  if (msgId) msgId=msgId.toString();
+  else {
+    if(!e)e=window.event;
+    var target=e.target?e.target:e.srcElement;
+    while(target&&target.className!='message-link')target=target.parentNode;
+    if(!target||target.className!='message-link')return;
+    if(target.pinned){/*Selected='';*/return false;}
+    msgId=target.name;
+  }
+  CloseMsg(Selected)
+  if(Selected==msgId) Selected='';
+  else { OpenMsg(msgId, false); Selected=msgId;}
+  if (e){if(e.preventDefault)e.preventDefault;else e.returnValue=false;}
+    if(switchCallback)switchCallback(null, msgId)
+  return false;
+}
+
+
+//]]>
+</script>
+
+<script src="OpenGLTestFrmwk.aspx_files/ga.js" async="" type="text/javascript"></script></head>	
+
+<body class="FIREFOX6">
+
+
+
+
+<a href="#Main"><img alt="Click here to Skip to main content" class="access-link" src="OpenGLTestFrmwk.aspx_files/t_002.gif"></a>
+
+
+<div class="page-background">
+	<div id="A" class="container-content">
+
+		
+		
+
+		
+
+		
+		
+
+<div class="container nav-memberbar clearfix">
+<div class="member-stats float-left">8,085,396 members and growing! (49,392 online)</div>
+<div class="float-left"></div>
+<div class="float-right">
+
+
+
+
+	<script type="text/javascript">//<!--
+	function doSubmit(secure)
+	{
+		if (secure)
+			document.subForm.action = "https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx"
+		else
+			document.subForm.action = "/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx"
+		document.subForm.submit();
+		return true;
+	}//-->
+	</script>
+
+	<a name="SignUp"></a>
+	<form name="subForm" id="subForm" action="/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx" method="post" class="tight">
+
+	
+	<input id="FormName" name="FormName" value="MenuBarForm" type="hidden">
+
+	Email <input class="small-text" name="Email" id="Email" style="width: 150px;" type="text">
+	Password <input class="small-text" name="Password" id="Password" style="width: 60px;" type="password">
+	<input value="Sign in" class="button" onclick="return doSubmit(false);" type="submit">
+	
+	<input src="OpenGLTestFrmwk.aspx_files/secure.png" class="align-bottom" title="Sign on securely" onclick="return doSubmit(true);" type="image">
+	<script type="text/javascript">
+function Join(){document.location.href='http://www.codeproject.com/script/Membership/Modify.aspx';return false;}
+document.write('<input type="button" class="button" onclick="return Join();" value="Join"');
+document.write('<input type="hidden" name="fld_quicksign" value="true" />');
+</script><input class="button" onclick="return Join();" value="Join" <input="" name="fld_quicksign" type="button">
+	<span class="nowrap">
+		<input checked="checked" name="RememberMeCheck" id="RememberMeCheck" value="1" type="checkbox">
+		<label for="RememberMeCheck">Remember&nbsp;me?</label>
+	</span>&nbsp;
+	<a id="ctl00_MemberMenu_SendPassword" href="http://www.codeproject.com/script/Membership/SendPassword.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Lost password?</a>
+	</form>
+
+</div>
+
+</div>
+		
+
+		
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tbody><tr>
+			<td class="header"><a href="http://www.codeproject.com/"><img id="ctl00_Logo" title="The Code Project" src="OpenGLTestFrmwk.aspx_files/logo225x90.gif" alt="Home" style="border-width: 0px;"></a></td>
+			<td class="header" align="right">
+				<div class="lqm_ad" lqm_publisher="lqm.codeproject.site" lqm_zone="77" lqm_format="728x90" lqm_tags="WinXP,Vista,VS2005,VS2008,C++,OpenGL,Dev,Intermediate"><iframe id="lqmad1" marginwidth="0" marginheight="0" frameborder="0" height="90" scrolling="no" width="728"></iframe></div>
+			</td>
+		</tr></tbody></table>
+
+		<table class="contrast1-background extended" cellpadding="0" cellspacing="0"><tbody><tr><td nowrap="nowrap">
+			
+
+<div class="navbar clearfix">
+<ul id="nav">
+
+<li><a id="ctl00_TopNavBar_Home" class="down" href="http://www.codeproject.com/">Home</a>
+
+
+</li><li><a id="ctl00_TopNavBar_Art" class="down selected" href="http://www.codeproject.com/script/Articles/Latest.aspx">Articles</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_ArtTopicList" class="fly last" onmouseover="ShowMap(this, 'siteMap');" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Chapters and Sections</a><ul id="ctl00_TopNavBar_MapFlyout"><li>
+				<div id="siteMap" class="tooltip-flyout">
+					<img src="OpenGLTestFrmwk.aspx_files/animated.gif" style="margin: 150px; width: 100px; height: 100px;">
+				</div>
+			</li></ul>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtSearch" class="fly break" href="http://www.codeproject.com/search.aspx">Search</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestArts" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=1,3,7">Latest Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtLatestTips" class="fly" href="http://www.codeproject.com/script/Articles/Latest.aspx?at=6,8">Latest Tips/Tricks</a></li>
+		<li><a id="ctl00_TopNavBar_ArtTop" class="fly" href="http://www.codeproject.com/script/Articles/TopArticles.aspx?ta_so=4">Top Articles</a></li>
+		<li><a id="ctl00_TopNavBar_ArtBeginner" class="fly" href="http://www.codeproject.com/search.aspx?aidlst=152&amp;sa_us=True">Beginner Articles</a></li>
+		<li id="ctl00_TopNavBar_VideosLink">
+			<a id="ctl00_TopNavBar_ArtVideoArticles" class="fly" href="http://www.codeproject.com/script/Articles/VideoArticleList.aspx">Video Articles</a>
+		</li>
+		<li><a id="ctl00_TopNavBar_ArtBlogArticles" class="fly break" href="http://www.codeproject.com/script/Articles/BlogArticleList.aspx">Technical Blogs</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostArticle" class="fly" href="http://www.codeproject.com/script/Articles/Submit.aspx">Post an Article</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostTipTrick" class="fly" href="http://www.codeproject.com/Tips/post.aspx">Post Tip &amp; Trick</a></li>
+		<li><a id="ctl00_TopNavBar_ArtPostBlog" class="fly break" href="http://www.codeproject.com/script/Articles/BlogFeed.aspx">Post your Blog</a></li>
+		<li><a id="ctl00_TopNavBar_ArtGuide" class="fly" href="http://www.codeproject.com/info/Submit.aspx">Posting/Update Guidelines</a></li>
+		<li><a id="ctl00_TopNavBar_ArtCompetition" class="fly last" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1">Article Competition</a></li>
+	</ul>
+
+</li>
+
+
+
+<li><a id="ctl00_TopNavBar_Answers" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">Quick Answers</a>
+	<ul>
+		<li id="ctl00_TopNavBar_AQL"><a id="ctl00_TopNavBar_ArticleQuestion" class="fly highlight" href="#_comments">Ask a Question about this article</a></li>
+
+		<li><a id="ctl00_TopNavBar_QAAsk" class="fly" href="http://www.codeproject.com/Questions/ask.aspx">Ask a Question</a></li>
+
+		
+		<li><a id="ctl00_TopNavBar_QAUnanswered" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=unanswered">View Unanswered Questions</a></li>
+		<li><a id="ctl00_TopNavBar_QALatest" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active">View All Questions...</a></li>
+		
+				<li><a id="ctl00_TopNavBar_QATR_ctl00_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=81" style="padding-left: 30px;">C# questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl01_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=85" style="padding-left: 30px;">ASP.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl02_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=842" style="padding-left: 30px;">VB.NET questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl03_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=78" style="padding-left: 30px;">C++ questions</a></li>
+			
+				<li><a id="ctl00_TopNavBar_QATR_ctl04_Tag" class="fly" href="http://www.codeproject.com/script/Answers/List.aspx?tab=active&amp;alltags=true&amp;tags=69" style="padding-left: 30px;">C#3.0 questions</a></li>
+			
+	</ul>
+
+</li>
+
+
+
+<li><a id="ctl00_TopNavBar_Forums" href="http://www.codeproject.com/script/Forums/List.aspx">Discussions</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_MessageBoardsAll" class="fly" href="http://www.codeproject.com/script/Forums/List.aspx">All Message Boards...</a></li>
+		<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1580997/Application-Lifecycle.aspx">Application Lifecycle<span class="fly-menu">&gt;</span></a>
+<ul><li><a class="fly" href="http://www.codeproject.com/Forums/369270/Design-and-Architecture.aspx">Design and Architecture</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1533717/Running-a-Business.aspx">Running a Business</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1533716/Sales-Marketing.aspx">Sales / Marketing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1651/Collaboration-Beta-Testing.aspx">Collaboration / Beta Testing</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3304/Work-Training-Issues.aspx">Work &amp; Training Issues</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1627782/Free-Tools.aspx">Free Tools</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/12076/ASP-NET.aspx">ASP.NET</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1580226/JavaScript.aspx">JavaScript</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1647/C-Cplusplus-MFC.aspx">C / C++ / MFC<span class="fly-menu">&gt;</span></a>
+<ul><li><a class="fly" href="http://www.codeproject.com/Forums/4486/ATL-WTL-STL.aspx">ATL /  WTL / STL</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/3785/Managed-Cplusplus-CLI.aspx">Managed C++/CLI</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1649/Csharp.aspx">C#</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1725/Database.aspx">Database</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/186301/Hardware-Devices.aspx">Hardware &amp; Devices<span class="fly-menu">&gt;</span></a>
+<ul><li><a class="fly" href="http://www.codeproject.com/Forums/1644/System-Admin.aspx">System Admin</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1606152/Hosting-and-Servers.aspx">Hosting and Servers</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1643/Java.aspx">Java</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1650/NET-Framework.aspx">.NET Framework</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/13695/Mobile.aspx">Mobile</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1540733/Sharepoint.aspx">Sharepoint</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1004257/Silverlight-WPF.aspx">Silverlight / WPF</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1646/Visual-Basic.aspx">Visual Basic</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1640/Web-Development.aspx">Web Development<span class="fly-menu">&gt;</span></a>
+<ul><li><a class="fly" href="http://www.codeproject.com/Forums/1580227/CSS.aspx">CSS</a></li>
+<li><a class="fly" href="http://www.codeproject.com/Forums/1213656/PHP.aspx">PHP</a></li>
+</ul></li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1645/Site-Bugs-Suggestions.aspx">Site Bugs / Suggestions</a>
+</li>
+<li><a class="fly" style="padding-left: 30px;" href="http://www.codeproject.com/Forums/1652005/Spam-Watch.aspx">Spam Watch</a>
+</li>
+
+
+		<li class="heading">Other Languages<span class="fly-menu">&gt;</span>
+		<ul>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580229/Hindi.aspx">General Indian Topics</a></li>
+		<li><a class="fly" href="http://www.codeproject.com/Forums/1580230/Chinese.aspx">General Chinese Topics</a></li>
+		</ul>
+		</li>
+	</ul>
+
+</li>
+
+<li><a id="ctl00_TopNavBar_Zones" href="http://www.codeproject.com/Zones/index.aspx">Learning Zones</a>
+
+	<ul>
+		<!--<li class="heading">Zones</li>-->
+		<li><a href="http://www.codeproject.com/Zones/Commerce/" class="fly">The Commerce Zone</a></li><li><a href="http://www.codeproject.com/Zones/Mobile/" class="fly">The Mobile Zone</a></li><li><a href="http://www.codeproject.com/Zones/Cloud/" class="fly">The Cloud Zone</a></li><li><a href="http://www.codeproject.com/Zones/Hardware/" class="fly">The Hardware Zone</a></li><li><a href="http://www.codeproject.com/Zones/Parallelism/" class="fly">The Parallelism Zone</a></li><li><a href="http://www.codeproject.com/Zones/WPF-Silverlight/" class="fly">The WPF / Silverlight Zone</a></li><li><a href="http://www.codeproject.com/Zones/Flex-Flash/" class="fly">The Flex / Flash Zone</a></li><li><a href="http://www.codeproject.com/Zones/HTML-CSS/" class="fly">The HTML / CSS Zone</a></li><li><a href="http://www.codeproject.com/Zones/SqlServer/" class="fly">The SQL Zone</a></li><li><a href="http://www.codeproject.com/Zones/WhitePapers/" class="fly break">WhitePapers / Webcasts</a></li>
+		<li><a id="ctl00_TopNavBar_Solutions" class="fly last" href="http://www.codeproject.com/kb/Solution-Center/">Solutions Center</a></li>
+	</ul>
+
+</li>
+
+
+
+
+
+
+
+
+
+
+<li><a id="ctl00_TopNavBar_Features" href="http://www.codeproject.com/Feature/">Features</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_WhosWho" class="fly" href="http://www.codeproject.com/script/Membership/Profiles.aspx">Who's Who</a></li>
+		<li><a id="ctl00_TopNavBar_MVPs" class="fly" href="http://www.codeproject.com/script/Awards/MVPWinners.aspx">CodeProject MVPs</a></li>
+		<li><a id="ctl00_TopNavBar_Companies" class="fly break" href="http://www.codeproject.com/script/Membership/Profiles.aspx?mgtid=1&amp;mgm=True">Company Listings</a></li>
+		<li><a id="ctl00_TopNavBar_Catalog" class="fly" href="http://www.codeproject.com/script/Catalog/List.aspx">Component &amp; Service Catalog</a></li>
+		<li><a id="ctl00_TopNavBar_Comps" class="fly" href="http://www.codeproject.com/script/Awards/CurrentCompetitions.aspx?cmpTpId=1&amp;awsac=true">Competitions</a></li>
+		<li><a id="ctl00_TopNavBar_News" class="fly" href="http://www.codeproject.com/script/News/List.aspx">News</a></li>
+		<li><a id="ctl00_TopNavBar_TechSummit" class="fly" href="http://www.codeproject.com/TechSummit/">Tech Summits</a></li>
+		<li><a id="ctl00_TopNavBar_Insider" class="fly" href="http://www.codeproject.com/Feature/Insider/">Daily Insider</a></li>
+		<li><a id="ctl00_TopNavBar_Newsletters" class="fly" href="http://www.codeproject.com/script/Mailouts/Archive.aspx?mtpid=1">Newsletter archive</a></li>
+		<li><a id="ctl00_TopNavBar_PressRelease" class="fly" href="http://www.codeproject.com/script/PressReleases/Preview.aspx">Press Releases</a></li>
+		<li><a id="ctl00_TopNavBar_Surveys" class="fly" href="http://www.codeproject.com/script/Surveys/List.aspx">Surveys</a></li>
+		<li><a id="ctl00_TopNavBar_Stuff" class="fly" href="http://www.codeproject.com/Info/Stuff.aspx">CodeProject Stuff</a></li>
+		<li><a id="ctl00_TopNavBar_AddIn" class="fly last" href="http://www.codeproject.com/Services/Addins/">CodeProject VS Addin </a></li>
+	</ul>
+
+</li>
+
+
+<li><a id="ctl00_TopNavBar_Help" href="http://www.codeproject.com/KB/FAQs/">Help!</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_HelpWhatIs" class="fly" href="http://www.codeproject.com/info/guide.aspx">What is 'The Code Project'?</a></li>
+		<li><a id="ctl00_TopNavBar_HelpGeneral" class="fly" href="http://www.codeproject.com/KB/FAQs/">General FAQ</a></li>
+		<li><a id="ctl00_TopNavBar_HelpPostQuestion" class="fly" href="http://www.codeproject.com/Questions/ask.aspx">Post a Question</a></li>
+		<li><a id="ctl00_TopNavBar_HelpBugs" class="fly" href="http://www.codeproject.com/Forums/1645/Site-Bugs-Suggestions.aspx">Bugs and Suggestions</a></li>
+		<li><a id="ctl00_TopNavBar_HelpSiteMap" class="fly" href="http://www.codeproject.com/script/Content/SiteMap.aspx">Site Directory</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAdvertise" class="fly" href="http://lakequincy.com/">Advertise with us</a></li>
+		<li><a id="ctl00_TopNavBar_HelpAboutUs" class="fly last" href="http://www.codeproject.com/info/about.aspx">About Us</a></li>
+	</ul>
+
+</li>
+
+
+<li style="margin-left:10px">
+<a id="ctl00_TopNavBar_Lounge" class="simple" href="http://www.codeproject.com/Lounge.aspx">The Lounge</a>
+
+	<ul>
+		<li><a id="ctl00_TopNavBar_LoungeLnk" class="fly" href="http://www.codeproject.com/Lounge.aspx">The Lounge &nbsp;</a></li>
+		<li><a id="ctl00_TopNavBar_CleverLnk" class="fly" href="http://www.codeproject.com/feature/CleverCode.aspx">Clever Code</a></li>
+		<li><a id="ctl00_TopNavBar_ShameLnk" class="fly" href="http://www.codeproject.com/feature/HallOfSHame.aspx">Hall of Shame</a></li>
+		<li><a id="ctl00_TopNavBar_SoapBoxLnk" class="fly" href="http://www.codeproject.com/Forums/1536756/The-Soapbox-2-0.aspx">The Soapbox</a></li>
+		
+	</ul>
+
+</li>
+
+</ul>
+
+</div>
+
+<script type="text/javascript">
+
+function ShowMap(prnt, elmId) {
+	var map = $('#' + elmId);
+	
+	if (!prnt.populated && !prnt.populating) {
+		prnt.populating = true;
+		map.css( { 'height': '400px', 'width': '400px' });
+		map.load("/script/content/ajax/SiteMap.aspx", function() { prnt.populated = true; });
+		prnt.populated = true;
+		prnt.populating = false;
+	}
+
+	if (prnt.populated) {
+		var left = Math.max(map.parent().offset().left, 200);
+		var top = Math.max(map.parent().offset().top, 0);
+		var width = Math.min((($(window).width()-left) * 0.9), 1000);
+		var height = Math.min((($(window).height()-top) * 0.9), 700);
+		map.css('width', width + 'px');
+		map.css('height', height + 'px');
+		map.css('overflow', 'auto');
+		map.css('margin', '0');
+	}
+}
+
+</script>
+		</td><td align="right">
+			
+
+<div class="search-bar">
+
+<form method="get" action="/search.aspx" name="Search" class="tight">
+
+
+<table class="search" border="0" cellpadding="0" cellspacing="0"><tbody><tr><td><input tabindex="2" class="search  subdue" id="sb_tb" value="Search" name="q"></td><td><input src="OpenGLTestFrmwk.aspx_files/search.gif" type="image"></td></tr></tbody></table>
+
+<div class="hover-container">
+	<div style="display: none;" id="SearchFilter" class="search-advanced small-text align-left">
+	<b>Search within:<br></b>
+		
+		<input id="sb_kw" name="sbo" value="kw" checked="checked" type="radio"><label for="sb_kw">Articles</label><br>
+<input id="sb_qa" name="sbo" value="qa" type="radio"><label for="sb_qa">Quick Answers</label><br>
+<input id="sb_fm" name="sbo" value="fm" type="radio"><label for="sb_fm">Messages</label><br>
+<input id="sb_ctlk" name="sbo" value="ctlk" type="radio"><label for="sb_ctlk">Product Catalog</label><br>
+
+
+		
+		
+	</div>
+</div>
+</form>
+
+</div>
+		</td></tr></tbody></table>
+		
+
+		
+		<div class="container-article hreview-aggregate">
+		
+			
+			<div class="container-header">
+				<div id="ctl00_Header" class="header">
+
+					<a name="Main"></a>
+
+					
+					<a name="_articleTop" id="_articleTop"></a>
+					
+
+<div class="clearfix hover-container">
+
+	<div class="container">
+		
+		<div class="breadcrumb float-left"><a href="http://www.codeproject.com/script/Content/SiteMap.aspx"><span class="sitemap-anchor" onmouseover="ShowMap(this,'map');"><img src="OpenGLTestFrmwk.aspx_files/sitemap16.png" alt="Site map" style="vertical-align: middle;" border="0" height="16px" width="16px"><div id="map" class="tooltip-flyout"><img src="OpenGLTestFrmwk.aspx_files/animated.gif" style="margin: 150px; width: 100px; height: 100px; border: 0pt none;"></div></span></a> » <a href="http://www.codeproject.com/Chapters/3/Multimedia.aspx">Multimedia</a> » <a href="http://www.codeproject.com/KB/openGL/">OpenGL</a> » <a href="http://www.codeproject.com/KB/openGL/#General">General</a></div>
+	</div>
+
+	
+	<div id="ctl00_TitleArea_InfoArea" class="float-right">
+		
+
+<div class="infobox">
+	<table class="tight small-text" cellpadding="0" cellspacing="1">
+	<tbody><tr><td>Licence&nbsp;</td><td><a href="http://www.codeproject.com/info/cpol10.aspx" title="The Code Project Open License (CPOL)">CPOL</a></td></tr>
+	
+	<tr><td>First Posted&nbsp;</td><td nowrap="nowrap"><b>4 Mar 2009</b></td></tr>
+	<tr><td>Views&nbsp;</td><td><b>35,436</b></td></tr>
+	
+	<tr><td>Downloads&nbsp;</td><td><b>959</b></td></tr>
+		
+	
+	<tr><td>Bookmarked&nbsp;</td><td><b>51 times</b></td></tr>
+	
+
+	
+	
+	</tbody></table>
+</div>	
+	</div>
+
+	
+	<div class="item">
+	<h1 id="ctl00_TitleArea_ArticleTitle" class="fn">Simple OpenGL Test Framework</h1>
+	</div>
+
+	
+	<div class="author">
+		By <b><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3885313">Kristian Carazo</a></b> | 
+		4 Mar 2009 
+		
+
+		
+		
+	</div>
+	
+	<div class="tags">
+	<span id="ctl00_TitleArea_TagsList_TagWrp" class="tags">
+	
+	
+	
+	<span id="ctl00_TitleArea_TagsList_VisibleTags"><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=24">WinXP</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=27">Vista</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=39">VS2005</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=77">VS2008</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=78">C++</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=113">OpenGL</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=118">Dev</a></span><span class="t"><a href="http://www.codeproject.com/search.aspx?aidlst=153">Intermediate</a></span></span> 
+
+	
+	
+</span>
+
+	</div>
+
+	
+	<div class="abstract summary"><span id="ctl00_TitleArea_ArticleDescr">A simple OpenGL framework for fast prototyping of OpenGL and game applications</span></div>
+</div>
+
+
+
+					
+
+				</div>
+
+				<div id="ctl00_HeadSide" class="header-sidebar">
+					<div class="align-left" style="height:24px">
+						
+
+
+&nbsp;
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+					
+
+<div class="bold pad-top">See Also</div>
+<ul class="outdent small-text" style="margin-left:5px">
+	<li><a id="ctl00_SeeAlso_LikeThis" href="http://www.codeproject.com/search.aspx?q=Simple+OpenGL+Test+Framework">More like this</a></li>
+	<li><a id="ctl00_SeeAlso_ByAuthor" href="http://www.codeproject.com/script/Articles/MemberArticles.aspx?amid=3885313">More by this author</a></li>
+</ul>
+
+				</div>
+
+			</div>
+			
+
+			
+			<div id="ctl00_Nav" class="container-nav">
+				<div id="ctl00_TabContainer" class="tabs-container clearfix">
+
+					
+					<div class="float-right action-links"> 
+						<a id="ctl00_ActionLinks_PrintLnk" class="tooltip" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?display=Print">
+	<img src="OpenGLTestFrmwk.aspx_files/print.gif" style="vertical-align: middle; border: 0pt none;" height="24px" width="24px">
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Print Article</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</a>
+
+<span id="SBI"><img src="OpenGLTestFrmwk.aspx_files/share_drop24.png" id="ctl00_ActionLinks_AddTo_Img" alt="add" style="vertical-align: middle;" height="24" width="37">
+</span>
+<div style="left: 641px; top: 165.333px; display: none;" id="ATD" class="list-socialbookmark"><div><a class="AddTo" title="Add this page to Twitter" onclick="return socialLinks.addto(0);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Twitter.gif" align="absmiddle" border="0" height="16px" width="16px"> Twitter</a> </div><div><a class="AddTo" title="Add this page to Digg" onclick="return socialLinks.addto(1);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Digg.png" align="absmiddle" border="0" height="16px" width="16px"> Digg</a> </div><div><a class="AddTo" title="Add this page to Facebook" onclick="return socialLinks.addto(2);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Facebook.png" align="absmiddle" border="0" height="16px" width="16px"> Facebook</a> </div><div><a class="AddTo" title="Add this page to Del.icio.us" onclick="return socialLinks.addto(3);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Delicious.png" align="absmiddle" border="0" height="16px" width="16px"> Del.icio.us</a> </div><div><a class="AddTo" title="Add this page to Reddit" onclick="return socialLinks.addto(4);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Reddit.png" align="absmiddle" border="0" height="16px" width="16px"> Reddit</a> </div><div><a class="AddTo" title="Add this page to Stumbleupon" onclick="return socialLinks.addto(5);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_stumbleupon.png" align="absmiddle" border="0" height="16px" width="16px"> Stumbleupon</a> </div><div><a class="AddTo" title="Add this page to Newsvine" onclick="return socialLinks.addto(6);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Newsvine.png" align="absmiddle" border="0" height="16px" width="16px"> Newsvine</a> </div><div><a class="AddTo" title="Add this page to Technorati" onclick="return socialLinks.addto(7);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Technorati.png" align="absmiddle" border="0" height="16px" width="16px"> Technorati</a> </div><div><a class="AddTo" title="Add this page to Mr. Wong" onclick="return socialLinks.addto(8);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_MrWong.png" align="absmiddle" border="0" height="16px" width="16px"> Mr. Wong</a> </div><div><a class="AddTo" title="Add this page to Yahoo!" onclick="return socialLinks.addto(9);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Yahoo.png" align="absmiddle" border="0" height="16px" width="16px"> Yahoo!</a> </div><div><a class="AddTo" title="Add this page to Google" onclick="return socialLinks.addto(10);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Google.png" align="absmiddle" border="0" height="16px" width="16px"> Google</a> </div><div><a class="AddTo" title="Add this page to Windows Live" onclick="return socialLinks.addto(11);" href="#"><img src="OpenGLTestFrmwk.aspx_files/AddTo_Live.png" align="absmiddle" border="0" height="16px" width="16px"> Windows Live</a> </div><div><a class="AddTo" title="Send as Email" onclick="return socialLinks.addto(12);" href="#"><img src="OpenGLTestFrmwk.aspx_files/envelope.gif" align="absmiddle" border="0" height="16px" width="16px"> Send as Email</a> </div></div> 
+ 
+
+<span class="tooltip">
+	 
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Add to your CodeProject bookmarks</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</span>
+
+<a id="discussAnch" href="#_comments" class="tooltip anchorLink">
+	
+	<img src="OpenGLTestFrmwk.aspx_files/discuss.gif" alt="Discuss" style="vertical-align: middle; border: 0pt none;" height="24px" width="24px">
+	<div class="speech-bubble-container-up">
+		<div class="speech-bubble-up">Discuss this article</div>
+		<div class="speech-bubble-pointer-up">
+			<div class="speech-bubble-pointer-up-inner"></div>
+		</div>
+	</div>
+</a>
+<span id="ctl00_ActionLinks_cmtcnt" class="subdue small-text align-middle" style="margin-left:-4px">19</span>
+
+
+
+
+
+					</div>
+
+					<div class="float-left">
+						
+						
+
+<div class="tabs float-left"><table cellpadding="0" cellspacing="0"><tbody><tr>
+	<td class="tab-selected">Article</td><td class="tab-unselected"><a href="http://www.codeproject.com/script/Articles/ViewDownloads.aspx?aid=33877">Browse Code</a></td><td class="tab-unselected"><a href="http://www.codeproject.com/script/Articles/Statistics.aspx?aid=33877">Stats</a></td><td class="tab-unselected"><a href="http://www.codeproject.com/script/Articles/ListVersions.aspx?aid=33877">Revisions (3)</a></td>
+</tr></tbody></table></div>	
+
+
+						
+						<div class="float-left" style="margin-left:15px">
+							<div id="ctl00_CurRat" class="tooltip" name="CurRat_33877">
+								
+
+<table class="small-text" cellpadding="0" cellspacing="0">
+<tbody><tr>
+	
+	<td class="nowrap">
+
+		<span id="ctl00_ArticleRating_VI">
+		<div class="nowrap rating-stars" style="height:24px;width:120px;position:relative;">
+	<div class="clipped align-left float-left" style="height:24px;width:120px;">
+		<img src="OpenGLTestFrmwk.aspx_files/stars-fill.png" style="border-width: 0px;">
+	</div><div class="clipped" style="height:24px;width:0px;position:relative;">
+		<img src="OpenGLTestFrmwk.aspx_files/stars-empty.png" style="border-width: 0px; position: absolute; top: 0pt; right: 0pt;">
+	</div>
+</div>
+		</span>
+
+		
+	</td>
+	
+	<td id="ctl00_ArticleRating_VR" class="nowrap">
+		&nbsp;<span id="ctl00_ArticleRating_VotesR">&nbsp;<span class="rating">5.00</span> (<span class="count">11 votes</span>)</span>
+		
+	</td>
+
+</tr>
+
+</tbody></table>
+
+								<div id="ctl00_RB" class="speech-bubble-container-up">
+									<div class="speech-bubble-up" style="width:150px !important">
+										            
+<div>
+<table class="feature" title="Voting Distribution. Recent data only" cellpadding="0" cellspacing="0" height="50px" width="100%"><tbody><tr><td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="OpenGLTestFrmwk.aspx_files/t.gif" alt="" title="" border="0px" height="1px" width="20pxpx"><br><span title="0 votes">1</span></td>
+<td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="OpenGLTestFrmwk.aspx_files/t.gif" alt="" title="" border="0px" height="1px" width="20pxpx"><br><span title="0 votes">2</span></td>
+<td class="chart-column rating-ignore-vote" title="Outside deviation limits - not included in score."><img src="OpenGLTestFrmwk.aspx_files/pollcol.gif" alt="1 vote, 9.1%" title="1 vote, 9.1%" border="0px" height="5px" width="20pxpx"><br><span title="1 vote">3</span></td>
+<td class="chart-column"><img src="OpenGLTestFrmwk.aspx_files/t.gif" alt="" title="" border="0px" height="1px" width="20pxpx"><br><span title="0 votes">4</span></td>
+<td class="chart-column"><img src="OpenGLTestFrmwk.aspx_files/pollcol.gif" alt="10 votes, 90.9%" title="10 votes, 90.9%" border="0px" height="50px" width="20pxpx"><br><span title="10 votes">5</span></td>
+</tr></tbody></table><div class="small-text align-center">5.00/5 - 11 votes</div><div class="small-text align-center subdue">1 removed</div><div class="small-text align-center subdue">μ 4.89, σ<sub>a</sub> 1.06 [<a href="http://www.codeproject.com/KB/FAQs/RatingReputationFAQ.aspx#noisefilter">?</a>]</div>
+</div>
+									</div>
+									<div class="speech-bubble-pointer-up">
+										<div class="speech-bubble-pointer-up-inner"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div id="ctl00_HeadSideFoot" class="tabs-sidebar">
+					<div>Sponsored Links</div>
+				</div>
+			</div>
+			
+
+			
+			<div class="container-text">
+
+				<div id="AT" class="text">
+					
+					
+					
+					
+
+					   
+
+						
+							
+			
+					<form name="aspnetForm" method="post" action="/KB/openGL/OpenGLTestFrmwk.aspx" id="aspnetForm" style="margin:0;padding:0">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMjExOTQzNjk4Mw9kFgJmD2QWAgIGD2QWCAIRD2QWAgIBD2QWBmYPDxYCHgtOYXZpZ2F0ZVVybAUyL3NjcmlwdC9BcnRpY2xlcy9BZG1pbi9FZGl0b3JDaG9pY2UuYXNweD9haWQ9MzM4NzdkZAICDw8WAh8ABTgvc2NyaXB0L0F3YXJkcy9BZG1pbi9Bd2FyZE9iamVjdC5hc3B4P29iaWQ9MzM4Nzcmb2J0aWQ9MmRkAgoPDxYCHwAFLy9zY3JpcHQvQXJ0aWNsZXMvQWRtaW4vUXVldWVFZGl0LmFzcHg/YWlkPTMzODc3ZGQCEw9kFgICAQ9kFgICAQ9kFgZmDw8WAh8ABS0vS0Ivb3BlbkdML09wZW5HTFRlc3RGcm13ay5hc3B4P2Rpc3BsYXk9UHJpbnRkZAIEDxYCHglpbm5lcmh0bWwFAjE5ZAIFDw8WAh8ABSYvc2NyaXB0L0FydGljbGVzL1JlcG9ydC5hc3B4P2FpZD0zMzg3N2RkAhUPZBYCAg0PZBYGAgIPFgIeBmFjdGlvbgUfL0tCL29wZW5HTC9PcGVuR0xUZXN0RnJtd2suYXNweBYIAgEPZBYCAgEPFgIeB1Zpc2libGVoZAIDD2QWAgICD2QWAgIBDxBkZBYAZAILDxYCHgtfIUl0ZW1Db3VudAIBZAIND2QWAgIBDxYCHgRUZXh0BUY8YSAgaHJlZj0iL0tCL29wZW5HTC9PcGVuR0xUZXN0RnJtd2suYXNweCNfYXJ0aWNsZVRvcCI+QXJ0aWNsZSBUb3A8L2E+ZAIJDw8WBB8FBQlQZXJtYWxpbmsfAAUfL0tCL29wZW5HTC9PcGVuR0xUZXN0RnJtd2suYXNweGRkAhcPFgIfBQUhQ29weXJpZ2h0IDIwMDkgYnkgS3Jpc3RpYW4gQ2FyYXpvZAIXD2QWAgIFDw8WAh8DaGRkZHTZ4I+yICD2tiuSdeVsZTHZXYNI" type="hidden">
+</div>
+
+
+						<!-- Article Text Start -->
+						<div id="contentdiv">
+						
+
+
+
+<!-- Article Starts -->
+
+
+<ul class="download">
+<li><a href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk/GLDemoApp_demo.zip">Download demo project - 2.64 MB</a></li>
+</ul>
+<img alt="GLDemoApp" src="OpenGLTestFrmwk.aspx_files/GLDemoApp.png" height="388" width="516"> 
+<h2>Introduction</h2>
+
+<p>This is a simple framework for prototyping OpenGL and game 
+applications. It provides a quick way to get up and running with all of 
+the most commonly used tools already built in.</p>
+
+<p>Included in the framework are the following features:</p>
+
+<ul>
+<li>Collada Loader</li>
+
+<li>OpenGL Renderer</li>
+
+<li>FreeType Font Rendering</li>
+
+<li>TGA Texture Loading</li>
+
+<li>Frame-rate Counting</li>
+
+<li>Full-screen/Windowed Support</li>
+</ul>
+
+<p>Included inside of the zip file are the following compiled third party libraries.</p>
+
+<ul>
+<li>Collada DOM</li>
+
+<li>GLEW</li>
+
+<li>FreeType</li>
+</ul>
+
+<h2>Using the Code</h2>
+
+<p>In order to use the framework, simply unzip <em>GLDemoApp_demo.zip</em>.
+ Open up the project with Visual Studio 2005. There are known issues 
+when working with Visual Studio 2008, you will need to rebuild the 
+Collada DOM libraries with Visual Studio 2008.</p>
+
+<p>Before using the framework, please take a moment to observe the 
+directory structure. At the top level, there should be three 
+directories:</p>
+
+<ul>
+<li>"<em>3rdParty</em>" - Contains all of the third party library and header files used in the framework</li>
+
+<li>"<em>bin</em>" - This is where all the executable files go after building the solutions; inside of this directory are these sub-directories: <em>release</em> and <em>resources</em></li>
+
+<li>"<em>GLDemoApp</em>" - This is where all of the source files and <em>*.sln</em> files are contained</li>
+</ul>
+
+<p>The main point of interest in the code is contained inside of <em>demo.cpp</em>. Inside this file, there are three functions:</p>
+
+<div style="display:block" width="100%" id="premain0" class="pre-action-link"><img preid="0" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg0" height="9" width="9"><span preid="0" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse0"> Collapse</span><span> | </span><a preid="0" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre0" lang="C++"><span class="code-keyword">void</span> InitDemo()
+{
+    RenderInit();
+    CColladaLoader loader;
+    g_pTestColladaMesh = loader.LoadColladaFile(BuildResourcePath(<span class="code-string">"</span><span class="code-string">test.dae"</span>));
+    g_uiTextureId = RenderLoadTexture(BuildResourcePath(<span class="code-string">"</span><span class="code-string">test.tga"</span>));
+}
+
+<span class="code-keyword">bool</span> RunDemo()
+{
+    <span class="code-keyword">static</span> float32 fRotation = <span class="code-digit">0</span>.0f;
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    glPushMatrix();
+
+    gluLookAt(<span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">10</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">1</span>.0f, <span class="code-digit">0</span>.0f);
+    
+    RenderGroundGrid(-<span class="code-digit">4</span>.0f);
+    
+    glPushMatrix();
+        glRotatef(fRotation, <span class="code-digit">1</span>.0f, <span class="code-digit">1</span>.0f, <span class="code-digit">1</span>.0f);
+        RenderMesh(*g_pTestColladaMesh);
+    glPopMatrix();
+
+    glPushMatrix();
+    glPointSize(<span class="code-digit">10</span>.0f);
+    glBegin(GL_POINTS);
+    glColor3f(<span class="code-digit">1</span>.0f, <span class="code-digit">1</span>.0f, <span class="code-digit">1</span>.0f);
+    glVertex3f(<span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f, <span class="code-digit">0</span>.0f);
+    glEnd();
+    glPopMatrix();
+
+    glPopMatrix();
+    
+    RenderText(&amp;g_defaultFont, <span class="code-string">"</span><span class="code-string">F1 : Fullscreen"</span>, Vector2f(<span class="code-digit">0</span>.0f, <span class="code-digit">20</span>.0f));
+    RenderText(&amp;g_defaultFont, <span class="code-string">"</span><span class="code-string">F2 : Windowed"</span>, Vector2f(<span class="code-digit">0</span>.0f, <span class="code-digit">40</span>.0f));
+
+
+    RenderBegin2dMode();
+        
+    RenderTexture(Vector2f(RenderGetOrthoWidth() * .5f, <span class="code-digit">50</span>.0f), g_uiTextureId, <span class="code-digit">0</span>.0f);
+
+    RenderEnd2dMode();
+
+    <span class="code-keyword">if</span>(GetAsyncKeyState(VK_F1))
+    {
+        sRenderResolution sRes;
+        sRes.nWidth = RenderGetDesiredWidth();
+        sRes.nHeight = RenderGetDesiredHeight();
+        sRes.nBitDepth = RenderGetBitDepth();
+
+        RenderSetResolution(sRes, <span class="code-keyword">true</span>);
+    }<span class="code-keyword">else</span> <span class="code-keyword">if</span>(GetAsyncKeyState(VK_F2))
+    {
+        sRenderResolution sRes;
+        sRes.nWidth = RenderGetDesiredWidth();
+        sRes.nHeight = RenderGetDesiredHeight();
+        sRes.nBitDepth = RenderGetBitDepth();
+
+        RenderSetResolution(sRes, <span class="code-keyword">false</span>);
+    }
+
+    fRotation += .1f;
+    <span class="code-keyword">if</span>(fRotation <span class="code-keyword">&gt;</span> <span class="code-digit">360</span>.0f)
+        fRotation = <span class="code-digit">0</span>.0f;
+
+    RenderStats();
+    RenderSwapBuffers();
+
+    <span class="code-keyword">return</span> (GetAsyncKeyState(VK_ESCAPE) &amp; 0xFFFF) ? <span class="code-keyword">false</span> : <span class="code-keyword">true</span>;
+}
+
+<span class="code-keyword">void</span> EndDemo()
+{
+    RenderReleaseTexture(g_uiTextureId);
+    RenderReleaseMesh(&amp;g_pTestColladaMesh);
+    RenderDestroy();
+}</pre>
+
+<p>It's pretty easy to see what is going on in here. <code>InitDemo()</code> is called from <em>gldemoapp.cpp</em> inside the <code>winmain</code> function right before the main app loop is entered. Inside the <code>InitDemo()</code>
+ function, you should add any initialization code that you need for your
+ application. Keep in mind that this function is only called once during
+ the lifetime of the application. By default, inside the <code>InitDemo()</code> function, there is some code that loads a Collada file, and a texture file. You can simply remove most of this code except for <code>RenderInit()</code>, which does all of the OpenGL initialization stuff. The <code>BuildResourcePath()</code>
+ function builds a path relative to the current directory from which the
+ app is being run, one directory up and inside a folder named "<em>resources</em>". Look over the directory structure, and you will see that <code>BuildResourcePath()</code> always supplies a path that is "<em>ACTUALPATH\\bin\\resources\\yourfilename.ext</em>".</p>
+
+<p>Next is the <code>RunDemo()</code> function. Inside it, you should 
+put the bulk of your code. This function is called repeatedly during the
+ execution of the application. It is important to note that this 
+function returns a <code><span class="code-keyword">bool</span></code>. 
+This indicates whether the application should continue to run, or exit 
+immediately. As you can see, there are several draw calls already inside
+ this function. These are here simply for demonstration, and can be 
+safely removed. Although, you should keep <code>glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)</code> and <code>RenderSwapBuffers()</code>.</p>
+
+<p>Finally, the <code>EndDemo()</code> function is called when the application is about to terminate its execution. This is where most clean up code should be placed.</p>
+
+<h2>Rendering Functions</h2>
+
+<p>The framework provides many utilities that should make using OpenGL a
+ lot easier. Some of the rendering and utility functions which you may 
+find useful are listed here:</p>
+
+<ul class="method">
+<li>
+<div style="display:block" width="100%" id="premain1" class="pre-action-link"><img preid="1" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg1" height="9" width="9"><span preid="1" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse1"> Collapse</span><span> | </span><a preid="1" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre1" lang="C++">RenderLoadTexture(<span class="code-keyword">const</span> std::string&amp; strFilePath)</pre>
+
+<p>Loads a TGA texture from disk and returns the OpenGL texture object ID. This ID can be used in calls to <code>glBindTexture</code>.</p>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain2" class="pre-action-link"><img preid="2" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg2" height="9" width="9"><span preid="2" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse2"> Collapse</span><span> | </span><a preid="2" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre2" lang="C++">RenderGroundGrid(float32 fYPos)</pre>
+
+<p>This function draws a grid on the ground at the given Y-coordinate position.</p>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain3" class="pre-action-link"><img preid="3" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg3" height="9" width="9"><span preid="3" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse3"> Collapse</span><span> | </span><a preid="3" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre3" lang="C++">RenderText(CFTFont* pFont, <span class="code-keyword">const</span> <span class="code-keyword">char</span>* strText, Vector2f&amp; vtPosition, float32 fScale, <span class="code-keyword">const</span> sRGBColor&amp; rgbColor)</pre>
+
+<p>This function displays text using the font provided as the first parameter. By default, inside <code>RenderInit()</code>, there is a font loaded, and it can be accessed by using the global variable <code>g_defaultFont</code>. For example, if you want to display some text, you could do the following...</p>
+
+<div style="display:block" width="100%" id="premain4" class="pre-action-link"><img preid="4" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg4" height="9" width="9"><span preid="4" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse4"> Collapse</span><span> | </span><a preid="4" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre4" lang="C++">RenderText(&amp;g_defaultFont, <span class="code-string">"</span><span class="code-string">Your cool text here"</span>, Vector2f(<span class="code-digit">0</span>.0f, <span class="code-digit">20</span>.0f));</pre>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain5" class="pre-action-link"><img preid="5" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg5" height="9" width="9"><span preid="5" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse5"> Collapse</span><span> | </span><a preid="5" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre5" lang="C++">RenderQueryResolutions(std::list<srenderresolution>&amp; lstResolution)</srenderresolution></pre>
+
+<p>Retrieves a list of available resolutions on the current display.</p>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain6" class="pre-action-link"><img preid="6" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg6" height="9" width="9"><span preid="6" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse6"> Collapse</span><span> | </span><a preid="6" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre6" lang="C++">RenderSetResolution(sRenderResolution&amp; rRes, <span class="code-keyword">bool</span> bFullScreen)</pre>
+
+<p>Sets the current resolution for the OpenGL window. Additionally, it can switch to full-screen by passing "<code><span class="code-keyword">true</span></code>" in the second parameter. For example, to set the resolution and switch to full-screen, you could do the following...</p>
+
+<div style="display:block" width="100%" id="premain7" class="pre-action-link"><img preid="7" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg7" height="9" width="9"><span preid="7" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse7"> Collapse</span><span> | </span><a preid="7" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre7" lang="C++">sRenderResolution rRes;
+rRes.nWidth = <span class="code-digit">640</span>;
+rRes.nHeight = <span class="code-digit">480</span>;
+rRes.nBitDepth = <span class="code-digit">32</span>;
+RenderSetResolution(rRes, <span class="code-keyword">true</span>);</pre>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain8" class="pre-action-link"><img preid="8" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg8" height="9" width="9"><span preid="8" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse8"> Collapse</span><span> | </span><a preid="8" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre8" lang="C++">RenderBegin2dMode()</pre>
+
+<p>Using this function will switch the current projection matrix to be 
+orthographic. It is important to note that the orthographic resolution 
+is independent of the perspective resolution.</p>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain9" class="pre-action-link"><img preid="9" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg9" height="9" width="9"><span preid="9" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse9"> Collapse</span><span> | </span><a preid="9" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre9" lang="C++">RenderEnd2dMode()</pre>
+
+<p>Use this function when you are done drawing in orthographic mode. The following snippet would draw a loaded texture at 50,50:</p>
+
+<div style="display:block" width="100%" id="premain10" class="pre-action-link"><img preid="10" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg10" height="9" width="9"><span preid="10" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse10"> Collapse</span><span> | </span><a preid="10" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre10" lang="C++">RenderBegin2dMode();
+RenderTexture(<span class="code-digit">50</span>.0f, <span class="code-digit">50</span>.0f), g_uiTextureId, <span class="code-digit">0</span>.0f);
+RenderEnd2dMode();</pre>
+</li>
+
+<li>
+<div style="display:block" width="100%" id="premain11" class="pre-action-link"><img preid="11" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg11" height="9" width="9"><span preid="11" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse11"> Collapse</span><span> | </span><a preid="11" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre11" lang="C++">std::<span class="code-SDKkeyword">string</span> ReadTextFileToBuffer(<span class="code-keyword">const</span> std::string&amp; strFileName)</pre>
+
+<p>This function will load a file from disk and put its contents in the returned buffer. This is useful for loading shaders.</p>
+</li>
+</ul>
+
+<h2>Utility Classes</h2>
+
+<p>In addition to the above functions, there are several classes which you will find useful when working with the framework:</p>
+
+<ul>
+<li><code>CFTFont</code>- This class is a wrapper for the <code>FreeType </code>library. It will load a given <code>FreeType </code>font and create the proper display lists for rendering. You can use an instance of this class as a parameter for <code>RenderText</code>.</li>
+
+<div style="display:block" width="100%" id="premain12" class="pre-action-link"><img preid="12" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg12" height="9" width="9"><span preid="12" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse12"> Collapse</span><span> | </span><a preid="12" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre12" lang="C++">CFTFont coolFont;
+coolFont.Init(BuildResourcePath(<span class="code-string">"</span><span class="code-string">MyAwesomeFont.TTF"</span>), <span class="code-digit">18</span>);
+RenderText(&amp;coolFont, <span class="code-string">"</span><span class="code-string">Loaded the font!"</span>, Vector2f(<span class="code-digit">0</span>.0f, <span class="code-digit">20</span>.0f));</pre>
+
+<li><code>CColladaLoader</code>- This is a wrapper class for the Collada
+ DOM library. This will load a Collada mesh file and store its constants
+ into an instance of <code>sMesh</code>. Once the file has been loaded and processed, the instance returned from the load function can be used in calls to <code><span class="code-keyword">void</span> RenderMesh(<span class="code-keyword">const</span> sMesh&amp; pMesh)</code>.
+ The loader will load textures as long as they are TGA format. Please 
+keep in mind that a lot of extra data provided by Collada will be 
+discarded once it is loaded.</li>
+
+<div style="display:block" width="100%" id="premain13" class="pre-action-link"><img preid="13" style="cursor: pointer;" src="OpenGLTestFrmwk.aspx_files/minus.gif" id="preimg13" height="9" width="9"><span preid="13" style="cursor: pointer; margin-bottom: 0pt;" id="precollapse13"> Collapse</span><span> | </span><a preid="13" href="#">Copy Code</a></div><pre style="margin-top: 0pt;" id="pre13" lang="C++">CColladaLoader loader;
+sMesh* pMyMesh = loader.LoadColladaFile(BuildResourcePath(<span class="code-string">"</span><span class="code-string">colladaTest.dae"</span>));
+
+RenderMesh(*pMyMesh);
+
+<span class="code-comment">//</span><span class="code-comment">Once you are done with the mesh call</span>
+<span class="code-comment">//</span>
+RenderReleaseMesh(&amp;pMyMesh);</pre>
+</ul>
+
+<h2>Additional Notes</h2>
+
+<p>Feel free to look around in the source files provided. There are many
+ helper functions at your disposal that should make your life easier. If
+ you run into any issues running a compiled executable, be sure to 
+double check what your "Working Directory" is set to (should be "<em>..\bin\debug</em>" for debug builds and "<em>..\bin\release</em>" for release builds). This option can be found under "Debugging" in the Solution Properties window.</p>
+
+<p>If you have any questions or comments about the code, please feel free to contact me at rebelcoder at gmail.com.</p>
+
+<h2>History</h2>
+
+<ul>
+<li>4<sup>th</sup> March, 2009: Initial post</li>
+
+<li>4<sup>th</sup> March, 2009: Changes made to article</li>
+</ul>
+
+
+
+
+
+
+						</div>
+						<!-- Article Text End -->
+
+						
+						
+						<h2>License</h2>
+						<div id="LicenseTerms"><p>This article, along with any associated source code and files, is licensed under <a href="http://www.codeproject.com/info/cpol10.aspx" rel="license">The Code Project Open License (CPOL)</a></p></div>
+						
+
+						
+
+						
+						<h2 id="ctl00_AboutHeading">About the Author</h2>
+
+						<div class="float-right">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site" lqm_zone="77" lqm_format="300x250" lqm_tags="WinXP,Vista,VS2005,VS2008,C++,OpenGL,Dev,Intermediate"><iframe id="lqmad2" marginwidth="0" marginheight="0" frameborder="0" height="250" scrolling="no" width="300"></iframe></div>
+						</div>
+
+						
+						
+   
+<table border="0" cellpadding="0" cellspacing="5">
+<tbody><tr valign="top">
+<td id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhotoTable" style="width: 155px;" valign="top">
+	<b><a id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberProfileLink" href="http://www.codeproject.com/Members/Kristian-Carazo">Kristian Carazo</a></b><br><br>
+	<center><img id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberPhoto" src="OpenGLTestFrmwk.aspx_files/fddf2499-2607-4a4a-b17b-ea4a5b1223cb.jpg" style="border-width: 0px;"></center>
+
+	<div class="small-text">
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberJobTitle">Software Developer</span><br>
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberCompany"></span><br>
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberLocation"><img src="OpenGLTestFrmwk.aspx_files/US.gif" alt="United States" height="11px" width="16px"> United States</span><br>
+		<br>
+		<span id="ctl00_AboutAuthorRptr_ctl00_AboutAuthor_memberType">Member</span><br>
+		
+
+		
+	</div>
+</td>
+
+<td>
+	<br>	
+</td>
+</tr>
+</tbody></table><br>
+						
+						
+
+						<div class="clearfix"></div>
+
+						
+						<div id="ctl00_RateArticleRow" class="clearfix voting-bar">
+						<div class="float-left" style="padding-top:8px"><a href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx#_articleTop">Article Top</a></div>
+						<div class="float-right align-right">
+							<div id="ctl00_RateArticle_RateItemWrapper" class="small-text" name="RateItem_33877">
+
+	<table class="small-text" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+		
+	
+		<td class="voteTbl" style="white-space: nowrap;" align="right">
+			<table class="small-text">
+			<tbody><tr class="">
+				<td id="ctl00_RateArticle_SignIn" nowrap="nowrap">
+					<a href="#SignUp">Sign Up</a> to vote for this article
+				</td>
+
+				
+				
+				
+				
+				
+			</tr>
+			</tbody></table>
+			<span id="ctl00_RateArticle_ErrorMessage" class="error"></span>
+		</td>
+	</tr>
+	</tbody></table>
+	<div class="hover-container">
+		<div id="ctl00_RateArticle_RCD" class="rating-comment align-left float-right">
+			Add a reason or comment to your vote: <a href="#" id="clear-rate_ctl00_RateArticle_RCD" title="close">x</a><br>
+			<textarea class="RateComment" rows="5" cols="60" style="width: 98%;"></textarea>
+			<span id="ctl00_RateArticle_CommentReq" class="subdue">Votes of 3 or less require a comment</span>
+		</div>
+	</div>
+</div>
+
+						</div>
+						</div>
+						
+
+					</form>
+
+					
+					<div style="margin:auto;padding:0px 10px;white-space:nowrap;overflow:hidden;width:468px;height:60px">		  
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site" lqm_zone="77" lqm_format="468x60" lqm_tags="WinXP,Vista,VS2005,VS2008,C++,OpenGL,Dev,Intermediate"><iframe id="lqmad3" marginwidth="0" marginheight="0" frameborder="0" height="60" scrolling="no" width="468"></iframe></div>
+						
+					</div>
+					
+
+					
+					
+					<h2>Comments and Discussions</h2>
+					<a name="_comments" id="_comments">&nbsp;</a><div id="_MessageBoard" onclick="return SwitchMessage(event, null)">
+<table id="ForumTable" class="box forum" cellpadding="0" cellspacing="0">
+<tbody><tr>
+<td class="forum-header1 highlight"><b>You must <a href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx%3ffid%3d1536890%26df%3d90%26mpp%3d25%26noise%3d3%26prof%3dFalse%26sort%3dPosition%26view%3dQuick">Sign In</a> to use this message board.</b> (<a href="https://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx%3ffid%3d1536890%26df%3d90%26mpp%3d25%26noise%3d3%26prof%3dFalse%26sort%3dPosition%26view%3dQuick">secure sign-in</a>)</td>
+</tr><tr>
+<td><table border="0" cellpadding="3px" cellspacing="0" width="100%">
+<tbody><tr class="forum-header1">
+<td style="white-space: nowrap;"><img src="OpenGLTestFrmwk.aspx_files/info-16.gif" alt="FAQ" style="border-width: 0pt; width: 16px; height: 16px; vertical-align: middle;">&nbsp;<a href="http://www.codeproject.com/KB/FAQs/MessageBoardsFAQ.aspx"><b>FAQ</b></a>&nbsp;</td><td colspan="2" style="white-space: nowrap; text-align: right;"><form action="/Search.aspx?fid=0" method="get" style="margin:0;padding:0;">
+<input name="fid" value="1536890" type="hidden"><input class="Frm_Input" name="qf" type="text">&nbsp;<input value="Search" class="button" type="submit">
+</form></td>
+</tr><tr class="forum-header2">
+<td colspan="3" style="width: 100%;"><div style="text-align:right;">
+<form action="/script/Forums/SetOptions.aspx?floc=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx&amp;fid=1536890&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick" method="get" style="margin:0;padding:0;">
+<input name="fid" value="1536890" type="hidden"><input name="currentQS" value="?floc=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx&amp;fid=1536890&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick" type="hidden"><input name="floc" value="/KB/openGL/OpenGLTestFrmwk.aspx" type="hidden"><input name="prof" id="prof" style="vertical-align: middle;" type="checkbox"><label for="prof">Profile popups</label>&nbsp;&nbsp;&nbsp;&nbsp;Noise level<select size="1" class="Frm_DropDown" name="noise">
+<option value="1">Very High</option><option value="2">High</option><option selected="selected" value="3">Medium</option><option value="4">Low</option><option value="5">Very Low</option>
+</select>&nbsp;&nbsp;Layout<select size="1" class="Frm_DropDown" name="view">
+<option selected="selected" value="Quick">Normal</option><option value="Topic">Expand Posts only</option><option value="Expanded">Expand Posts &amp; Replies</option><option value="Thread">Thread View</option><option value="Normal">No Javascript</option><option value="Preview">No JS + Preview</option>
+</select>&nbsp;&nbsp;Per page<select size="1" class="Frm_DropDown" name="mpp">
+<option value="10">10</option><option selected="selected" value="25">25</option><option value="50">50</option>
+</select>&nbsp;&nbsp;&nbsp;<input value="Update" name="SetOpt" class="button" type="submit">
+</form>
+</div></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><a name="xx0xx"></a><table border="0" cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="forum-navbar">
+<td>&nbsp;</td><td> <a href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick">Refresh</a></td><td style="text-align: right; white-space: nowrap;"><span class="subdue">First</span> <span class="subdue">Prev</span> <span class="subdue">Next</span></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table class="fixed-layout blank-background" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="5px" width="1px"></td>
+</tr><tr class="MsgHd Rt HdUnSel " id="F2984783_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2984783xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2984783" parent="0" thread="2984783" href="http://www.codeproject.com/Messages/2984783/Cannot-Load-dae-file-which-are-create-by-3ds-Max.aspx">Cannot Load .dae file which are create by 3ds Max!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3300977">trumsaigon</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">22:55 29 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2984783_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Dear Mr.Carazo,<br>
+&nbsp;<br>
+The first, I thank you about your application. It help me a lot.<br>
+I have built dom application to create .DLL file and built your application successfully.<br>
+&nbsp;<br>
+Now, I researching about the way you do. I see file test.dae. You use it
+ to test application. In that file, all mesh data will be output as 
+triangles. I see that.<br>
+&nbsp;<br>
+However, now I cannot load .DAE file which are created by 3ds Max. My 
+files which are all mesh data will be output as polygon. Such that:<br>
+&nbsp;<br>
+        <pre>Tag polygons material=<span class="code-string">"</span><span class="code-string">red"</span> count=<span class="code-string">"</span><span class="code-string">288"</span>
+          <span class="code-keyword">&lt;</span>input semantic=<span class="code-string">"</span><span class="code-string">VERTEX"</span> source=<span class="code-string">"</span><span class="code-string">#ob-mesh-vertices"</span> offset=<span class="code-string">"</span><span class="code-string">0"</span> /&gt;
+          <span class="code-keyword">&lt;</span>input semantic=<span class="code-string">"</span><span class="code-string">NORMAL"</span> source=<span class="code-string">"</span><span class="code-string">#obj-mesh-normals"</span> offset=<span class="code-string">"</span><span class="code-string">1"</span> /&gt;
+          <span class="code-keyword">&lt;</span>input semantic=<span class="code-string">"</span><span class="code-string">TEXCOORD"</span> source=<span class="code-string">"</span><span class="code-string">#obj-mesh-map-channel1"</span> offset=<span class="code-string">"</span><span class="code-string">2"</span> set=<span class="code-string">"</span><span class="code-string">1"</span> /&gt;
+          <span class="code-keyword">&lt;</span>input semantic=<span class="code-string">"</span><span class="code-string">TANGENT"</span> source=<span class="code-string">"</span><span class="code-string">#obj-mesh-tangent1"</span> offset=<span class="code-string">"</span><span class="code-string">3"</span> set=<span class="code-string">"</span><span class="code-string">1"</span> /&gt;
+          <span class="code-keyword">&lt;</span>input semantic=<span class="code-string">"</span><span class="code-string">BINORMAL"</span> source=<span class="code-string">"</span><span class="code-string">#ob-mesh-binormal1"</span> offset=<span class="code-string">"</span><span class="code-string">4"</span> set=<span class="code-string">"</span><span class="code-string">1"</span> /&gt;
+          TagP <span class="code-digit">133</span> <span class="code-digit">133</span> <span class="code-digit">11</span> <span class="code-digit">11</span> <span class="code-digit">0</span> <span class="code-digit">188</span> <span class="code-digit">188</span> <span class="code-digit">10</span> <span class="code-digit">11</span> <span class="code-digit">3</span> <span class="code-digit">183</span> <span class="code-digit">183</span> <span class="code-digit">23</span> <span class="code-digit">9</span> <span class="code-digit">5</span> /TagP
+          TagP <span class="code-digit">188</span> <span class="code-digit">188</span> <span class="code-digit">10</span> <span class="code-digit">11</span> <span class="code-digit">3</span> <span class="code-digit">220</span> <span class="code-digit">220</span> <span class="code-digit">9</span> <span class="code-digit">11</span> <span class="code-digit">8</span> <span class="code-digit">211</span> <span class="code-digit">211</span> <span class="code-digit">22</span> <span class="code-digit">9</span> <span class="code-digit">12</span> <span class="code-digit">183</span> <span class="code-digit">183</span> <span class="code-digit">23</span> <span class="code-digit">9</span> <span class="code-digit">5</span> /TagP
+          TagP <span class="code-digit">220</span> <span class="code-digit">220</span> <span class="code-digit">9</span> <span class="code-digit">11</span> <span class="code-digit">8</span> <span class="code-digit">240</span> <span class="code-digit">240</span> <span class="code-digit">8</span> <span class="code-digit">11</span> <span class="code-digit">17</span> <span class="code-digit">235</span> <span class="code-digit">235</span> <span class="code-digit">21</span> <span class="code-digit">9</span> <span class="code-digit">21</span> <span class="code-digit">211</span> <span class="code-digit">211</span> <span class="code-digit">22</span> <span class="code-digit">9</span> <span class="code-digit">12</span> /TagP
+        /Tag polygons</pre>
+&nbsp;<br>
+And I had changed where you get triangle array (ColladaLoader.cpp) which have LoadColladaFile function such that:<br>
+&nbsp;<br>
+<pre>domPolygons_Array arPolygonsArray = pMesh-<span class="code-keyword">&gt;</span>getPolygons_array();
+uint32 uiPolygonCount = arPolygonsArray.getCount();
+uint32* pIdxArray = <span class="code-digit">0</span>;
+				uint32  uiIndexCount = <span class="code-digit">0</span>;
+				uint32  uiInputCount = <span class="code-digit">0</span>;
+				
+				uint32 nPositionOffset = <span class="code-digit">0</span>;
+				uint32 nNormalOffset = <span class="code-digit">0</span>;
+				uint32 nTexOffset = <span class="code-digit">0</span>;
+				
+				std::string strMaterialName;
+				
+				<span class="code-keyword">for</span>(uint32 uiCurrentPolygon = <span class="code-digit">0</span>; uiCurrentPolygon <span class="code-keyword">&lt;</span> uiPolygonCount; uiCurrentPolygon++)
+				{
+					domPolygons* pPolygonIndex = arPolygonsArray[uiCurrentPolygon];
+					<span class="code-comment">//</span><span class="code-comment">strMaterialName = pPolygonIndex-&gt;getMaterial();
+</span>					domInputLocalOffset_Array arInputOffsets = pPolygonIndex-<span class="code-keyword">&gt;</span>getInput_array();
+					uiInputCount = arInputOffsets.getCount();
+					<span class="code-keyword">for</span>(uint32 uiCurrentIO = <span class="code-digit">0</span>;uiCurrentIO <span class="code-keyword">&lt;</span> uiInputCount;uiCurrentIO++)
+					{
+						domInputLocalOffset* pCurrentOffset = arInputOffsets[uiCurrentIO];
+						<span class="code-keyword">if</span>(strcmp(pCurrentOffset-<span class="code-keyword">&gt;</span>getSemantic(),<span class="code-string">"</span><span class="code-string">VERTEX"</span>) == <span class="code-digit">0</span>)
+						{
+							nPositionOffset = pCurrentOffset-<span class="code-keyword">&gt;</span>getOffset();
+						}
+						<span class="code-keyword">else</span> <span class="code-keyword">if</span>(strcmp(pCurrentOffset-<span class="code-keyword">&gt;</span>getSemantic(),<span class="code-string">"</span><span class="code-string">NORMAL"</span>) == <span class="code-digit">0</span>)
+						{
+							nNormalOffset = pCurrentOffset-<span class="code-keyword">&gt;</span>getOffset();
+						}
+						<span class="code-keyword">else</span> <span class="code-keyword">if</span>(strcmp(pCurrentOffset-<span class="code-keyword">&gt;</span>getSemantic(), <span class="code-string">"</span><span class="code-string">TEXCOORD"</span>) == <span class="code-digit">0</span>)
+						{
+							nTexOffset = pCurrentOffset-<span class="code-keyword">&gt;</span>getOffset();
+						}
+					}
+&nbsp;
+					domP_Array arPolyInfo = pPolygonIndex-<span class="code-keyword">&gt;</span>getP_array();
+					uint32 pCount = arPolyInfo.getCount();
+					<span class="code-keyword">for</span>(uint32 uiCurrentP = <span class="code-digit">0</span>;uiCurrentP <span class="code-keyword">&lt;</span> pCount;uiCurrentP++)
+					{
+						domPRef pPolyInfo = arPolyInfo[uiCurrentP];
+						domListOfUInts idxArray = pPolyInfo-<span class="code-keyword">&gt;</span>getValue();
+						uiIndexCount += idxArray.getCount();
+					}
+&nbsp;
+					pIdxArray = <span class="code-keyword">new</span> uint32[uiIndexCount];
+					memset(pIdxArray, <span class="code-digit">0</span>, <span class="code-keyword">sizeof</span>(uint32) * (uiIndexCount));
+					uint32 uiTemp2 = <span class="code-digit">0</span>;
+&nbsp;
+					<span class="code-keyword">for</span>(uint32 uiTemp = <span class="code-digit">0</span>;uiTemp <span class="code-keyword">&lt;</span> pCount;uiTemp++)
+					{
+						domPRef pPolyInfo = arPolyInfo[uiTemp];
+						domListOfUInts idxArray = pPolyInfo-<span class="code-keyword">&gt;</span>getValue();
+						
+						<span class="code-keyword">for</span>(uint32 uiIdxCount = <span class="code-digit">0</span>; uiIdxCount <span class="code-keyword">&lt;</span> idxArray.getCount(); uiIdxCount++)
+						{
+							pIdxArray[uiIdxCount + uiTemp2] = idxArray[uiIdxCount];
+						}
+						uiTemp2 += idxArray.getCount();
+					}
+					
+				}</pre>
+&nbsp;<br>
+Result, I don't see anything. Please spend a few time to help me. Thank you very much <img src="OpenGLTestFrmwk.aspx_files/smiley_frown.gif" alt="Frown | :(" align="top"> <br>
+&nbsp;<br>
+Regards and best wishes for you. <br>
+&nbsp;<br>
+<div class="ForumSig">i dont know</div><br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2984783" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2984783/Cannot-Load-dae-file-which-are-create-by-3ds-Max.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2984783" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F3210835_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="34px"><a name="xx3210835xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="3210835" parent="2984783" thread="2984783" href="http://www.codeproject.com/Messages/3210835/Re-Cannot-Load-dae-file-which-are-create-by-3ds-Ma.aspx">Re: Cannot Load .dae file which are create by 3ds Max!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=4832978">rusty</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">10:18 24 Sep '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F3210835_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 34px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="34px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">I was trying to load a google sketchup 7 dae file but i doesn't seems to work. Any hints?<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2984783" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/3210835/Re-Cannot-Load-dae-file-which-are-create-by-3ds-Ma.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF3210835" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd Rt HdUnSel " id="F2963997_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2963997xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2963997" parent="0" thread="2963997" href="http://www.codeproject.com/Messages/2963997/Runtime-error-in-FreetypeUtils.aspx">Runtime error in FreetypeUtils</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=825844">Dreamwolf</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">17:02 13 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2963997_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">I get a error in FreetypeUtils.cpp at the line:<br>
+&nbsp;<br>
+	<pre>ftError = FT_New_Face(library, strFontName.c_str(), <span class="code-digit">0</span>, &amp;face );</pre> <br>
+despite the path beeing right and the font file exists.<br>
+&nbsp;<br>
+Do you have any clue as to why?<br>
+&nbsp;<br>
+Ulf<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2963997" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2963997/Runtime-error-in-FreetypeUtils.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2963997" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F2966740_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="34px"><a name="xx2966740xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2966740" parent="2963997" thread="2963997" href="http://www.codeproject.com/Messages/2966740/Re-Runtime-error-in-FreetypeUtils.aspx">Re: Runtime error in FreetypeUtils</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3885313">Kristian Carazo</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">10:08 16 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2966740_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 34px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="34px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">I will look into it. Can you provide me with any 
+additional information which might be useful in solving this issue? Are 
+you trying to load a font you provided? Or one of the default fonts?<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2963997" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2966740/Re-Runtime-error-in-FreetypeUtils.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2966740" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F2967033_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="52px"><a name="xx2967033xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2967033" parent="2966740" thread="2963997" href="http://www.codeproject.com/Messages/2967033/Re-Runtime-error-in-FreetypeUtils.aspx">Re: Runtime error in FreetypeUtils</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=825844">Dreamwolf</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">15:48 16 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2967033_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 52px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="52px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">I was just trying to run the project in debug mode. I had downloaded the debug variant dll's <br>
+as per you recomendation. After I wrote that comment I tried to run the exe file directly, outside VS2005<br>
+and that did work so my current suspicion is that the paths aren't the same in debug and release build.<br>
+&nbsp;<br>
+The error code I got from the failed function call was "1" if that helps.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2963997" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2967033/Re-Runtime-error-in-FreetypeUtils.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2967033" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd LoVote Rt HdUnSel " id="F2961356_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2961356xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2961356" parent="0" thread="2961356" href="http://www.codeproject.com/Messages/2961356/LINK-Errors-in-Build-process.aspx">LINK Errors in Build process</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=6009777">Gilles Ngainsi</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">3:57 12 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2961356_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Dear Mr Carazo,<br>
+&nbsp;<br>
+thanks for your help I could now embed the files and libraries in project configuration area.<br>
+&nbsp;<br>
+By now I'm having the code passed in compiling until I reach the linking step.<br>
+&nbsp;<br>
+At that level I'm having errors of the following aspect:<br>
+&nbsp;<br>
+1&gt;freetype221.lib(cff.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4<br>
+1&gt;freetype221.lib(type1.obj) : error LNK2001: unresolved external symbol @__security_check_cookie@4<br>
+1&gt;demo.obj : error LNK2001: unresolved external symbol @__security_check_cookie@4<br>
+&nbsp;<br>
+1&gt;gldemoapp.obj : error LNK2001: unresolved external symbol __imp__CreateWindowExA@48<br>
+1&gt;gldemoapp.obj : error LNK2001: unresolved external symbol __imp__GetDC@4<br>
+&nbsp;<br>
+1&gt;ColladaLoader.obj : error LNK2001: unresolved external symbol 
+"__declspec(dllimport) public: __thiscall 
+std::basic_string&lt;char,struct&gt;,class std::allocator<char> &gt;::basic_string&lt;char,struct&gt;,class std::allocator<char> &gt;(void)" (__imp_??0?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@QAE@XZ)<br>
+&nbsp;<br>
+Is this still a configuration error?<br>
+DO you have a suggestion to get over this?<br>
+&nbsp;<br>
+Thanks again<br>
+&nbsp;<br>
+regards,<br>
+&nbsp;<br>
+Gilles </char></char><br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2961356" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2961356/LINK-Errors-in-Build-process.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2961356" style="white-space:nowrap;">2.00/5 (1 vote) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd Rt HdUnSel " id="F2959387_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2959387xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2959387" parent="0" thread="2959387" href="http://www.codeproject.com/Messages/2959387/Encountered-following-error-while-bilding-the-proj.aspx">Encountered following error while bilding the project</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=6009777">Gilles Ngainsi</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">1:40 11 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2959387_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">.philo\dokumente\cias\forschung\gldemoapp\gldemoapp\gldemoapp\stdafx.h(9)
+ : fatal error C1083: Cannot open include file: 'windows.h': No such 
+file or directory<br>
+&nbsp;<br>
+1&gt;GLDemoApp - 1 Fehler, 0 Warnung(en)<br>
+&nbsp;<br>
+<br>
+&nbsp;<br>
+<br>
+Can you please provide support for me to configure my visual studio 2005
+ to have this project working properly with build done? the file 
+windows.h cannot be found and I don't know how to proceed at this point<br>
+&nbsp;<br>
+Thanks for a reply <br>
+&nbsp;<br>
+regards,<br>
+&nbsp;<br>
+Gilles<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2959387" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2959387/Encountered-following-error-while-bilding-the-proj.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2959387" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F2959936_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="34px"><a name="xx2959936xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2959936" parent="2959387" thread="2959387" href="http://www.codeproject.com/Messages/2959936/Re-Encountered-following-error-while-bilding-the-p.aspx">Re: Encountered following error while bilding the project</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3885313">Kristian Carazo</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">6:28 11 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2959936_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 34px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="34px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">It looks to me as though you may have something 
+incorrectly configured. "Windows.h" should have been included with your 
+version of visual studio 2005. You should try to locate this file on 
+your hard drive and attempt to add that directory to your include 
+directory(s), either as a project setting or an application setting.<br>
+&nbsp;<br>
+Thanks,<br>
+Kristian-Angel Carazo<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2959387" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2959936/Re-Encountered-following-error-while-bilding-the-p.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2959936" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd Rt HdUnSel " id="F2953211_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2953211xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2953211" parent="0" thread="2953211" href="http://www.codeproject.com/Messages/2953211/Great-Job.aspx">Great Job!!!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=710252">JimD.9999</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">6:01 6 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2953211_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Awesome - try it.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2953211" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2953211/Great-Job.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2953211" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HiVote Rt HdUnSel " id="F2949728_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2949728xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2949728" parent="0" thread="2949728" href="http://www.codeproject.com/Messages/2949728/Amazing-Job.aspx">Amazing Job!!!</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=5996465">camelcoder713</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">9:04 4 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2949728_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Amazing job on putting a complicated system together in a
+ simple and organized interface. I found your tutorial very helpful and 
+thank you for sharing professional coding techniques and habits.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949728" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2949728/Amazing-Job.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2949728" style="white-space:nowrap;">5.00/5 (1 vote) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="root msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd Rt HdUnSel " id="F2949273_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="16px"><a name="xx2949273xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2949273" parent="0" thread="2949273" href="http://www.codeproject.com/Messages/2949273/demo-application-fails-to-start.aspx">demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=208129">wanft</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">4:03 4 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2949273_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 16px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="16px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">the demo application fails to start because cant find libcollada14dom21-d.dll<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2949273/demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2949273" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F2949572_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="34px"><a name="xx2949572xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2949572" parent="2949273" thread="2949273" href="http://www.codeproject.com/Messages/2949572/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3885313">Kristian Carazo</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">6:59 4 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2949572_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 34px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="34px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Sorry about the error. It seems that due to size 
+constraints the original zip file had to be trimmed. In order to run the
+ application in debug mode you will have to follow these steps.<br>
+&nbsp;<br>
+1. Download the DLL from the following site.<br>
+<a href="http://code.google.com/p/ghoulengine/source/browse/trunk/bin/libcollada14dom21-d.dll?spec=svn19&amp;r=19">http://code.google.com/p/ghoulengine/source/browse/trunk/bin/libcollada14dom21-d.dll?spec=svn19&amp;r=19</a>[<a href="http://code.google.com/p/ghoulengine/source/browse/trunk/bin/libcollada14dom21-d.dll?spec=svn19&amp;r=19" target="_blank" title="New Window">^</a>]<br>
+2.Inside of the "bin" folder create another folder called "debug". Copy "libcollada14dom21-d.dll" into this directory. <br>
+3.Inside of the bin folder there is also a folder named "release", copy "glew32.dll" from there to the "debug" folder.<br>
+&nbsp;<br>
+The app should now run without issues. If you encounter any more 
+problems feel free to contact me. If need be I can also email you a copy
+ of libcollada14dom21-d.dll.<br>
+&nbsp;<br>
+Thank you for reading.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2949572/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2949572" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd LoVote HdUnSel " id="F2949623_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="52px"><a name="xx2949623xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2949623" parent="2949572" thread="2949273" href="http://www.codeproject.com/Messages/2949623/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=208129">wanft</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">7:27 4 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2949623_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 52px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="52px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">just did what you said and now i get the following msg: "The application failed to initialize properly (0xc0150002)" <br>
+&nbsp;<br>
+the debug folder has the exe + glew32.dll + libcollada14dom21.dll + libcollada14dom21-d.dll . am i missing anything?<br>
+&nbsp;<br>
+<br>
+best regards. <br>
+&nbsp;<br>
+<div class="ForumSig">MCP - 70-016 (VC++).<br>
+MCP.NET, MCAD.NET, MCSD.NET<br>
+MCPD Enter.<br>
+IBM OOAD Certified.<br>
+</div><br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2949623/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2949623" style="white-space:nowrap;">1.50/5 (2 votes) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F2977383_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="70px"><a name="xx2977383xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2977383" parent="2949623" thread="2949273" href="http://www.codeproject.com/Messages/2977383/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=1071444">sonnv</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">1:10 24 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2977383_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 70px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="70px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">I got the same exception with debug dll from Code.google. Please help.<br>
+The release version works very well.<br>
+&nbsp;<br>
+Thanks.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2977383/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2977383" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HiVote HdUnSel " id="F2978106_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="88px"><a name="xx2978106xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2978106" parent="2977383" thread="2949273" href="http://www.codeproject.com/Messages/2978106/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3885313">Kristian Carazo</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">7:12 24 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2978106_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 88px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="88px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">If anyone else runs into this issue and would like the 
+debug version of the DLL that I use in my project feel free to email me 
+and I will send you a copy of the DLL.<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2978106/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2978106" style="white-space:nowrap;">5.00/5 (1 vote) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd LoVote HdUnSel " id="F2978738_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="106px"><a name="xx2978738xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="2978738" parent="2978106" thread="2949273" href="http://www.codeproject.com/Messages/2978738/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=3300977">trumsaigon</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">17:49 24 Mar '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F2978738_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 106px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="106px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Please sent to me one copy of debug DLL because I have same error.<br>
+I using VS 2008. Collada 1.4.<br>
+&nbsp;<br>
+Mail: nnmanh@gmail.com<br>
+&nbsp;<br>
+Thanks so much and best regards <br>
+&nbsp;<br>
+<div class="ForumSig">i dont know</div><br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/2978738/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF2978738" style="white-space:nowrap;">2.00/5 (1 vote) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F3226762_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="106px"><a name="xx3226762xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="3226762" parent="2978106" thread="2949273" href="http://www.codeproject.com/Messages/3226762/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=6616505">degrate007</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">17:36 7 Oct '09 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F3226762_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 106px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="106px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Hi,<br>
+Please send me a copy of the dll file. I'm also getting the application failed to initialize error.<br>
+&nbsp;<br>
+Thank You<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/3226762/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF3226762" style="white-space:nowrap;">3.00/5 (3 votes) </span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F3975358_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="116px"><a name="xx3975358xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="3975358" parent="3226762" thread="2949273" href="http://www.codeproject.com/Messages/3975358/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8118106">Member 8118106</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">22:21 28 Jul '11 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F3975358_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 116px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="116px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">sorry, i have the same problem , could you send the dll to me? i am using vs 2010 express<br>
+&nbsp;<br>
+e-mail: baal_zabut@hotmail.de<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/3975358/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF3975358" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr class="quick">
+<td class="msg-divide"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="1px" width="1px"></td>
+</tr><tr class="MsgHd HdUnSel " id="F3984492_h0">
+<td width="100%"><table class="quickHd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr class="hover-row">
+<td class="Frm_MsgIndent" width="106px"><a name="xx3984492xx"></a><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"></td><td class="Frm_MsgSubject hover-container"><a class="message-link" rel="nofollow" name="3984492" parent="2978106" thread="2949273" href="http://www.codeproject.com/Messages/3984492/Re-demo-application-fails-to-start.aspx">Re: demo application fails to start</a> <a onclick="return Pin(this);" href="#" title="Click to pin message"><img src="OpenGLTestFrmwk.aspx_files/pin.gif" alt="Pin" align="top" border="0" height="12px" width="13px"></a></td><td class="Frm_MsgIcon"><img src="OpenGLTestFrmwk.aspx_files/member_sm.gif" title="member" alt="member" border="0" height="16px"></td><td class="Frm_MsgAuthor"><a href="http://www.codeproject.com/script/Membership/View.aspx?mid=8138409">waterharbin</a></td><td class="Frm_MsgDate" style="vertical-align: top; white-space: nowrap;">21:13 6 Aug '11 &nbsp;</td>
+</tr>
+</tbody></table></td>
+</tr><tr id="F3984492_h1" style="display: none;">
+<td width="100%"><table class="quickBd" border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td class="Frm_MsgIndent" style="width: 106px;"><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" height="1px" width="106px"></td><td class="MsgBd BdSel "><table border="0" cellpadding="0" cellspacing="5px" width="100%">
+<tbody><tr>
+<td><table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr>
+<td colspan="2">Hello,sorry to disturb you.But the same error occured on my machine as the former members.So,please send me a copy.Thanks you.<br>
+E-mail:waterharbin@163.com<br></td>
+</tr><tr style="vertical-align: middle;">
+<td class="msg-footer"><a class="toolbar" href="http://www.codeproject.com/script/Membership/LogOn.aspx?rp=%2fKB%2fopenGL%2fOpenGLTestFrmwk.aspx">Sign In</a>·<a class="toolbar" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;sort=Position&amp;tid=2949273" title="View&nbsp;Thread">View&nbsp;Thread</a>·<a class="toolbar" href="http://www.codeproject.com/Messages/3984492/Re-demo-application-fails-to-start.aspx" title="Get permanent link">Permalink</a></td><td class="msg-footer" style="text-align: right;"><span id="MVF3984492" style="white-space:nowrap;"></span></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><img src="OpenGLTestFrmwk.aspx_files/t_003.gif" alt="" border="0" height="5px" width="1px"></td>
+</tr>
+</tbody></table></td>
+</tr><tr>
+<td><table cellpadding="2px" cellspacing="0" width="100%">
+<tbody><tr class="forum-footer">
+<td>Last Visit: 19:00 31 Dec '99  &nbsp; &nbsp; Last Update: 22:06 13 Sep '11 </td><td style="text-align: right; white-space: nowrap;"><input id="_mbnUrl" value="/KB/openGL/OpenGLTestFrmwk.aspx?fid=1536890&amp;df=90&amp;mpp=25&amp;noise=3&amp;prof=False&amp;sort=Position&amp;view=Quick&amp;fr=20" type="hidden"><b>1</b></td>
+</tr>
+</tbody></table></td>
+</tr>
+</tbody></table>
+</div><p class="small-text"><img src="OpenGLTestFrmwk.aspx_files/msg_general.gif" alt="General" align="top" height="16px" width="16px"> General &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_news.gif" alt="News" align="top" height="16px" width="16px"> News &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_idea.gif" alt="Suggestion" align="top" height="16px" width="16px"> Suggestion &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_question.gif" alt="Question" align="top" height="16px" width="16px"> Question &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_bug.gif" alt="Bug" align="top" height="16px" width="16px"> Bug &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_answer.gif" alt="Answer" align="top" height="16px" width="16px"> Answer &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_joke.gif" alt="Joke" align="top" height="16px" width="16px"> Joke &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_rant.gif" alt="Rant" align="top" height="16px" width="16px"> Rant &nbsp;&nbsp; <img src="OpenGLTestFrmwk.aspx_files/msg_admin.gif" alt="Admin" align="top" height="16px" width="16px"> Admin &nbsp;&nbsp; </p><p class="small-text">Use Ctrl+Left/Right to switch messages, Ctrl+Up/Down to switch threads, Ctrl+Shift+Left/Right to switch pages.</p>
+
+					
+					<div class="theme1-background" style="height:2px"></div>
+
+					<div class="extended tiny-text">
+						<div class="row">
+							<div class="float-left">
+								<a id="ctl00_PermaLink" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx">Permalink</a> | 
+								<a id="ctl00_AdvertiseLink" href="http://lakequincy.com/">Advertise </a> |
+								<a id="ctl00_PrivacyLink" href="http://www.codeproject.com/info/privacy.aspx">Privacy</a> |
+								<a id="ctl00_Mobile" rel="nofollow" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?display=Mobile">Mobile</a>
+								<br>
+								
+								 |
+								Web23 |
+								2.3.110912.1
+								
+							</div>
+							<div class="float-right align-right">
+								Article Copyright 2009 by Kristian Carazo<br>Everything else
+								Copyright © <a href="mailto:webmaster@codeproject.com">CodeProject</a>, 1999-2011<br>
+								<a id="ctl00_TermsOfUseLink" href="http://www.codeproject.com/info/TermsOfUse.aspx">Terms of Use</a>
+							</div>
+
+							
+
+
+<div class="page-width">
+Layout: <a id="ctl00_PageWidth_FixedT" title="Fixed width layout" rel="nofollow" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?PageFlow=FixedWidth">fixed</a>
+|
+<a id="ctl00_PageWidth_FluidT" title="Fluid layout" rel="nofollow" href="http://www.codeproject.com/KB/openGL/OpenGLTestFrmwk.aspx?PageFlow=Fluid">fluid</a>
+</div>
+
+
+
+						</div>
+					</div>
+					
+
+				<br clear="all">
+		
+				
+				</div>
+
+				<div id="ctl00_ContentSide" class="text-sidebar">
+					<script type="text/javascript">document.write(unescape('%0d%0a%0d%0a%3cdiv class%3d%22results%22%3e%0d%0a%0d%0a%09%3cdiv class%3d%22container-adwords%22%3e%0d%0a%09%09%3ca id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Link%22 href%3d%22%2fscript%2fCatalog%2fRedir.aspx%3fctid%3d3257%26amp%3bcttype%3d2%22 target%3d%22_blank%22%3e%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Title%22 class%3d%22title%22%3eQuickUnit Unit Test Designer for C%23 and VB.NET%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Teaser%22 class%3d%22desc%22%3eQuickUnit is a Unit Test generator for C%23 and VB.NET. Offering an...%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl01_Url%22 class%3d%22link%22%3equickunit.com%3c%2fspan%3e%3c%2fa%3e%0d%0a%09%3c%2fdiv%3e%0d%0a%0d%0a%09%3cdiv class%3d%22container-adwords%22%3e%0d%0a%09%09%3ca id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Link%22 href%3d%22%2fscript%2fCatalog%2fRedir.aspx%3fctid%3d2133%26amp%3bcttype%3d2%22 target%3d%22_blank%22%3e%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Title%22 class%3d%22title%22%3eNevron .NET Vision Suite%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Teaser%22 class%3d%22desc%22%3eNevron .NET Vision is the ultimate suite for creating unique and...%3c%2fspan%3e%3cbr %2f%3e%0d%0a%09%09%09%3cspan id%3d%22ctl00_RelatedAds_RelatedResults_ctl02_Url%22 class%3d%22link%22%3ewww.nevron.com%3c%2fspan%3e%3c%2fa%3e%0d%0a%09%3c%2fdiv%3e%0d%0a%0d%0a%3c%2fdiv%3e%0d%0a'));</script>
+
+<div class="results">
+
+	<div class="container-adwords">
+		<a id="ctl00_RelatedAds_RelatedResults_ctl01_Link" href="http://www.codeproject.com/script/Catalog/Redir.aspx?ctid=3257&amp;cttype=2" target="_blank"><span id="ctl00_RelatedAds_RelatedResults_ctl01_Title" class="title">QuickUnit Unit Test Designer for C# and VB.NET</span><br>
+			<span id="ctl00_RelatedAds_RelatedResults_ctl01_Teaser" class="desc">QuickUnit is a Unit Test generator for C# and VB.NET. Offering an...</span><br>
+			<span id="ctl00_RelatedAds_RelatedResults_ctl01_Url" class="link">quickunit.com</span></a>
+	</div>
+
+	<div class="container-adwords">
+		<a id="ctl00_RelatedAds_RelatedResults_ctl02_Link" href="http://www.codeproject.com/script/Catalog/Redir.aspx?ctid=2133&amp;cttype=2" target="_blank"><span id="ctl00_RelatedAds_RelatedResults_ctl02_Title" class="title">Nevron .NET Vision Suite</span><br>
+			<span id="ctl00_RelatedAds_RelatedResults_ctl02_Teaser" class="desc">Nevron .NET Vision is the ultimate suite for creating unique and...</span><br>
+			<span id="ctl00_RelatedAds_RelatedResults_ctl02_Url" class="link">www.nevron.com</span></a>
+	</div>
+
+</div>
+
+
+					
+
+					
+
+					<div style="width:160px;margin: 10px 0;">
+						<div class="lqm_ad" lqm_publisher="lqm.codeproject.site" lqm_zone="77" lqm_format="160x600" lqm_tags="WinXP,Vista,VS2005,VS2008,C++,OpenGL,Dev,Intermediate"><iframe id="lqmad4" marginwidth="0" marginheight="0" frameborder="0" height="600" scrolling="no" width="160"></iframe></div>
+					</div>
+
+					
+	<div class="announce">
+	<div id="ctl00_RelatedArticles_RelatedResults_ctl00_header" class="announce-header">See Also...</div>
+	<div class="announce-content">	
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl01_Link" class="title" href="http://www.codeproject.com/KB/openGL/GLFW.aspx">GLFW: A (Simple) OpenGL Framework Library</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl02_Link" class="title" href="http://www.codeproject.com/KB/openGL/sharpgl.aspx">SharpGL: a C# OpenGL class library</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl03_Link" class="title" href="http://www.codeproject.com/KB/openGL/firstGLwindow.aspx">Setting up an OpenGL development environment in Ubuntu Linux</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl05_Link" class="title" href="http://www.codeproject.com/KB/miscctrl/OpenGLViewWinForms.aspx">Creating an OpenGL view on a Windows Form</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl06_Link" class="title" href="http://www.codeproject.com/KB/wtl/opengl.aspx">A WTL class for developping OpenGL programs using WTL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl07_Link" class="title" href="http://www.codeproject.com/KB/openGL/TranslationController.aspx">Interactive Techniques in Three-dimensional Scenes (Part 1): Moving 3D Objects with the Mouse using OpenGL 2.1</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl08_Link" class="title" href="http://www.codeproject.com/KB/openGL/Outline_Mode.aspx">Generating Outlines in OpenGL</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl09_Link" class="title" href="http://www.codeproject.com/KB/WPF/WPFOpenGL.aspx">Creating OpenGL Windows in WPF</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl10_Link" class="title" href="http://www.codeproject.com/KB/dotnet/pinvokeperformance.aspx">PInvoke Performance</a>
+		
+	</div>
+	
+	<div class="container-related-item">
+		<a id="ctl00_RelatedArticles_RelatedResults_ctl11_Link" class="title" href="http://www.codeproject.com/KB/architecture/gunit.aspx">MbUnit : Generative Unit Test Framework</a>
+		
+	</div>
+	
+	</div>
+	</div>
+	
+
+
+					
+
+					
+<div class="announce">
+<div class="announce-header">The Daily Insider</div>
+<div class="announce-content">
+
+<div><a id="ctl00_News_News_ctl01_Link" href="http://citizen428.net/archives/434">30 free programming books</a></div>
+
+Daily News: <a id="ctl00_News_News_ctl02_Subscribe" href="http://www.codeproject.com/Feature/Insider/">Signup now</a>.
+</div>
+</div>
+		
+
+				</div>
+
+			</div>
+			
+
+		</div>
+		
+
+	</div>
+</div>
+
+
+<div style="display:none;" id="lqm_AdTable">
+	
+</div>
+
+<script type="text/javascript" language="Javascript" src="OpenGLTestFrmwk.aspx_files/jquery.js"></script><script type="text/javascript">//<![CDATA[
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/script/JS/jquery-1.6.2.min.js' type='text/javascript' %3E%3C/script%3E"));
+}//]]></script>
+<script type="text/javascript" language="Javascript" src="OpenGLTestFrmwk.aspx_files/article.js"></script>
+<script type="text/javascript" language="Javascript" src="OpenGLTestFrmwk.aspx_files/m.js"></script>
+<script type="text/javascript" language="Javascript">//<![CDATA[
+var socialLinks = new social();
+socialLinks.PlaceholderId="ATD";socialLinks.ObjectId=33877;
+socialLinks.ObjectTypeId=2;
+socialLinks.addtoMethod=1;
+socialLinks.Horizontal=false;
+socialLinks.Showname=true;
+socialLinks.setupLinks("socialLinks", escape(document.location.href),escape(document.title), 100, 0, "small-text Bold", "AddTo");
+socialLinks.setupMenu();
+if($.LqmAds)$.LqmAds();
+var oSrchFlt = false, oSrchBox=false,srchBoxFoc=false;
+$(document).ready(function() {
+ InitWatermark('sb_tb', 'Search');
+ var sbar = $('#sb_tb'); 
+ var sfilter = $('#SearchFilter');
+ if (sbar && sfilter) {
+  sfilter.removeClass('popup'); sfilter.hide();
+  sbar.blur(function() { if (!oSrchFlt)sfilter.hide();srchBoxFoc=false; });
+  sbar.focus(function() { oSrchFlt=false;srchBoxFoc=true;sfilter.show(); });
+  sbar.mouseleave(function() { oSrchBox=false; });
+  sbar.mouseover(function() { oSrchBox=true; });
+  sfilter.mouseleave(function() { oSrchFlt=false; if (!srchBoxFoc&&!oSrchBox)sfilter.hide();});
+  sfilter.mouseover(function() { oSrchFlt=true; });
+ }
+});
+$(document).ready(function() { anchorAnimate(); });
+$("#ctl00_RateArticle_RateItemWrapper").removeClass("container-rating");$('#clear-rate_ctl00_RateArticle_RCD').click(function () { $('#ctl00_RateArticle_RCD').hide(); return false;});
+function ChkRtctl00_RateArticle(val, objId) {if (val<=3||true) {
+$('div[name=RateItem_' + objId + '] .rating-comment').css("display","");}
+else $('div[name=RateItem_' + objId + '] .rating-comment').css("display","none");}
+
+
+//]]>
+</script>
+
+
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-1735123-1']);
+	_gaq.push(['_trackPageview']);
+	_gaq.push(['_setDomainName', 'www.codeproject.com']);
+	_gaq.push(['_setSessionTimeout', '1200']); 
+
+	(function () {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})(); 
+</script>
+
+
+
+<canvas id="cv1" width="1" height="1" style="position: absolute; left: 0pt; top: 0pt; pointer-events: none;"></canvas><canvas id="cv2" width="1" height="1" style="position: absolute; left: 0pt; top: 0pt; pointer-events: none;"></canvas></body></html>
